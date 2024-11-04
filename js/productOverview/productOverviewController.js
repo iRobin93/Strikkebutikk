@@ -1,4 +1,4 @@
-<div id="productPage">
+htmlTest = `<div id="productPage">
 <div id="productName">Produkt</div>
 
 <div id="productAlbum">
@@ -23,4 +23,4 @@
 <div id="productInfo"></div>
 
 <div id="deliveryTime">1-2 dager</div>
-</div>
+</div>`

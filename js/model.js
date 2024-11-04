@@ -54,7 +54,7 @@ const model = {
     assortment: {
       yarn: {
         type: "",
-        color: "",
+        color: [],
       },
       pattern: {
         name: "",
@@ -67,6 +67,39 @@ const model = {
       username: "Rebecka",
       password: "1234",
     },
+
+    assortment: [
+      {
+        id: 0,
+        yarnId: 0,
+        colorIds: [3, 5, 2]
+      },
+      {
+        id: 1,
+        yarnId: 1,
+        colorIds: [3, 5, 2]
+      },
+
+    ],
+
+    pattern: [
+      {
+        id: 0,
+        name: "Islender",
+        img: "path",
+      },
+      {
+        id: 1,
+        name: "Carly",
+        img: "path",
+      },
+      {
+        id: 2,
+        name: "Marius",
+        img: "path",
+      }
+    ],
+
 
     yarn: [
       {
@@ -136,6 +169,7 @@ const model = {
         //sizes: ["s", "m", "l"],
         category: "Genser",
         quantity: 2,
+
         productInfo:
           "Genseren strikkes sømløst ovenfra og ned og har et grafisk rutemønstersom minner om det ikoniskerutemønsteret som finnes på setene på t-banen i London. Det fremre og bakre bærestykket, samt raglanermene, strikkes samtidig i ett stykke for å oppnå nøyaktig samme mål.",
       },

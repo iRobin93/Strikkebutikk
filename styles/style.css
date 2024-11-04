@@ -16,3 +16,25 @@
 .hover {
   cursor: pointer;
 }
+
+.sortimentText{
+  display: flex;
+  justify-content: center;
+}
+
+.assortmentYarn{
+  width: 90%;
+  height: 100%;
+  border: solid 2px green;
+}
+
+.assortmentContainer{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 5%;
+}
+.assortmentContainer2{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  margin-top: 5%;
+}
