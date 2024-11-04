@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rebeckas Nettbutikk</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <style>
+    .create-container {
+      display: flex;
+      flex-direction: row;
+    }
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      align-content: center;
+    }
+  </style>
+  <body>
+    <div id="app"></div>
+
+    <script src="js/model.js"></script>
+    <script src="js/common.js"></script>
+
+    <script src="js/main/mainView.js"></script>
+    <script src="js/main/mainController.js"></script>
+
+    <script src="js/navbar/navbarView.js"></script>
+    <script src="js/navbar/navbarController.js"></script>
+
+    <script src="js/logIn/logInView.js"></script>
+    <script src="js/logIn/logInController.js"></script>
+
+    <script src="js/productOverview/productOverviewView.js"></script>
+    <script src="js/productOverview/productOverviewController.js"></script>
+
+    <script src="js/productSite/productSiteView.js"></script>
+    <script src="js/productSite/productSiteController.js"></script>
+
+    <script src="js/addProducts/addProductsView.js"></script>
+    <script src="js/addProducts/addProductsController.js"></script>
+
+    <script>
+      updateView();
+
+      function updateView() {
+        const page = model.app.page;
+
+        app.innerHTML = showNavBar();
+        if (model.app.isAdmin) {
+          app.innerHTML += showAdminNavBar();
+        }
+        if (page === "main") updateViewMain();
+        else if (page === "logIn") updateViewLogIn();
+        else if (page === "overview") updateViewOverview();
+        else if (page === "productSite") updateViewProduct();
+        else if (page === "addProducts") updateViewAdd();
+      }
+    </script>
+  </body>
+</html>

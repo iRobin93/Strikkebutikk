@@ -1,0 +1,18 @@
+.topNavBarContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.bottomNavBarContainer {
+  display: flex;
+  justify-content: space-between;
+  background-color: aliceblue;
+}
+
+.searchNavBar {
+  width: 200px;
+  height: 40px;
+}
+
+.hover {
+  cursor: pointer;
+}
