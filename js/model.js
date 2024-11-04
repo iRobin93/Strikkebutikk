@@ -71,13 +71,13 @@ const model = {
     assortment: [
       {
         id: 0,
-        yarnId: 0,
+        yarnId: 1,
         colorIds: [3, 5, 2]
       },
       {
         id: 1,
-        yarnId: 1,
-        colorIds: [3, 5, 2]
+        yarnId: 3,
+        colorIds: [5, 2, 3]
       },
 
     ],

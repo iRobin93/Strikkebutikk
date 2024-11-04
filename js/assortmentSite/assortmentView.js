@@ -1,21 +1,109 @@
-function updateViewAssortment(){
+function updateViewAssortment() {
     app.innerHTML += /*HTML*/ ` 
         <div class="sortimentText">Sortiment</div>
         <div class="assortmentContainer">
         <div>Garn:</div> 
         <div>Mønster</div>
         
-        <div class="assortmentYarn">${model.data.assortment[0].id} </div>
-        <div class="assortmentYarn">${model.data.assortment[0].id} </div>
+        <div class="assortmentYarn"> ${createTable()} </div>
+        <div class="assortmentYarn">${createPatternTable()} </div>
         </div>
 
         <div class="assortmentContainer2">
         <div class="assortmentInput"> <input type="text"> </div>
         <div> <button>+</button></div>
         <div> <button>-</button></div>
-        <div class="assortmentInput"> <input type="text"> </div>
-        <div> <button>+</button></div>
+        <div class="assortmentInput"> <input onchange="model.input.assortment.pattern.name = this.value" type="text"> </div>
+        <div> <button onclick="pushNewPattern()">+</button></div>
         <div> <button>-</button></div>
         </div>
     `;
+}
+
+
+
+
+function createPatternTable() {
+    let html =  /*HTML*/ `
+    <table id="shoppingCartTable">
+    ${createPatternRows()}
+
+    </table>
+    
+    `;
+
+    return html
+}
+
+function createPatternRows() {
+    let html = "";
+    for (let i = 0; i < model.data.pattern.length; i++) {
+        html += `
+         <tr>
+        <td>
+     ${model.data.pattern[i].name}
+        </td>
+        </tr>
+        `
+
+
+    }
+
+    return html;
+}
+
+function createTable() {
+
+    let html =  /*HTML*/ `
+    <table id="shoppingCartTable">
+    ${createAssortmentRows()}
+
+    </table>
+    
+    `;
+
+    return html
+}
+
+function createHtmlRow(index) {
+
+    let yarnId = model.data.assortment[index].yarnId;
+
+    let foundYarnObject = model.data.yarn.find(yarnObject => yarnObject.id == yarnId)
+
+
+
+    return /*HTML*/ `
+ <tr>
+ <td>
+    ${foundYarnObject.type} - ${putColors(index)}
+ </td>
+ </tr>
+ `;
+}
+
+
+
+
+function createAssortmentRows() {
+    let html = "";
+    for (let i = 0; i < model.data.assortment.length; i++) {
+        html += createHtmlRow(i);
+    }
+
+    return html;
+
+}
+
+function putColors(index) {
+    let html = "";
+
+    for (let i = 0; i < model.data.assortment[index].colorIds.length; i++) {
+        let colorId = model.data.assortment[index].colorIds[i]
+        let foundColorObject = model.data.colorAlt.find(colorObject => colorObject.id == colorId)
+        html += foundColorObject.color
+        if (i < model.data.assortment[index].colorIds.length - 1)
+            html += ","
+    }
+    return html
 }
