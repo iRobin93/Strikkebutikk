@@ -3,7 +3,7 @@ const app = document.getElementById("app");
 const model = {
   app: {
     page: "main", //"logIn", "overview", "productSite", "addProducts"
-    isAdmin: false,
+    isAdmin: true,
   },
   input: {
     searchField: {

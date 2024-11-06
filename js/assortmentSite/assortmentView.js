@@ -13,9 +13,9 @@ function updateViewAssortment() {
         <div class="assortmentInput"> <input type="text"> </div>
         <div> <button>+</button></div>
         <div> <button>-</button></div>
-        <div class="assortmentInput"> <input onchange="model.input.assortment.pattern.name = this.value" type="text"> </div>
+        <div class="assortmentInput"> <input value="${model.input.assortment.pattern.name}" onchange="model.input.assortment.pattern.name = this.value" type="text"> </div>
         <div> <button onclick="pushNewPattern()">+</button></div>
-        <div> <button>-</button></div>
+        <div> <button onclick="removePattern()">-</button></div>
         </div>
     `;
 }
@@ -25,7 +25,7 @@ function updateViewAssortment() {
 
 function createPatternTable() {
     let html =  /*HTML*/ `
-    <table id="shoppingCartTable">
+    <table id="PatternTable">
     ${createPatternRows()}
 
     </table>
@@ -38,9 +38,9 @@ function createPatternTable() {
 function createPatternRows() {
     let html = "";
     for (let i = 0; i < model.data.pattern.length; i++) {
-        html += `
+        html += /*HTML*/ `
          <tr>
-        <td>
+        <td data-patternid=${model.data.pattern[i].id} id="pattern${i}" onclick="patternClicked(this)">
      ${model.data.pattern[i].name}
         </td>
         </tr>

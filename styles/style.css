@@ -38,3 +38,8 @@
   grid-template-columns: auto auto auto auto auto auto;
   margin-top: 5%;
 }
+
+
+.bordered{
+  border: dashed 1px orange;
+}
