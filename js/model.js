@@ -59,6 +59,7 @@ const model = {
       pattern: {
         name: "",
         patternImg: "",
+        selected: [],
       },
     },
   },

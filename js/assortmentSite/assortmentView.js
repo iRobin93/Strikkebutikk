@@ -21,7 +21,23 @@ function updateViewAssortment() {
 }
 
 
+function patternClicked(element){
+    element.classList.toggle('bordered');
+    if(element.classList.contains('bordered')){
+        model.input.assortment.pattern.selected.push(Number(element.dataset.patternid))
+    }
+    else {
+        let index = model.input.assortment.pattern.selected.findIndex(function (id) {
+            return element.dataset.patternid == id;
+        })
+        model.input.assortment.pattern.selected.splice(index, 1)
+    }
+}
 
+function checkPatternId(id){
+
+    
+}
 
 function createPatternTable() {
     let html =  /*HTML*/ `
@@ -38,9 +54,10 @@ function createPatternTable() {
 function createPatternRows() {
     let html = "";
     for (let i = 0; i < model.data.pattern.length; i++) {
+        
         html += /*HTML*/ `
          <tr>
-        <td data-patternid=${model.data.pattern[i].id} id="pattern${i}" onclick="patternClicked(this)">
+        <td data-patternid=${model.data.pattern[i].id} class="bordered" id="pattern${i}" onclick="patternClicked(this)">
      ${model.data.pattern[i].name}
         </td>
         </tr>
