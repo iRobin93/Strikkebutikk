@@ -10,7 +10,17 @@ function updateViewAssortment() {
         </div>
 
         <div class="assortmentContainer2">
-        <div class="assortmentInput"> <input type="text"> </div>
+        <div class="assortmentInput"> 
+        <select id="yarns" name="yarns">
+         <option value="Mohair">Mohair</option>
+         <option value="Bomull">Bomull</option>
+         <option value="Ull">Ull</option>
+         <option value="Merinoull">Merinoull</option>
+        </select>
+
+        ${drawColorAlts()}
+
+        </div>
         <div> <button>+</button></div>
         <div> <button>-</button></div>
         <div class="assortmentInput"> <input value="${model.input.assortment.pattern.name}" onchange="model.input.assortment.pattern.name = this.value" type="text"> </div>
@@ -20,10 +30,28 @@ function updateViewAssortment() {
     `;
 }
 
+function drawColorAlts(){
+    html = /*HTML*/ ``
 
-function patternClicked(element){
+
+    <select id="colors" name="colors" size="4" multiple>
+    <option value="Rød">Rød</option>
+    <option value="Grønn">Grønn</option>
+    <option value="Ull">Ull</option>
+    <option value="Merinoull">Merinoull</option>
+   </select>
+
+    for(i = 0; i < model.data.colorAlt.length; i++)
+
+    
+
+    return html
+}
+
+
+function patternClicked(element) {
     element.classList.toggle('bordered');
-    if(element.classList.contains('bordered')){
+    if (element.classList.contains('bordered')) {
         model.input.assortment.pattern.selected.push(Number(element.dataset.patternid))
     }
     else {
@@ -34,9 +62,9 @@ function patternClicked(element){
     }
 }
 
-function checkPatternId(id){
+function checkPatternId(id) {
 
-    
+
 }
 
 function createPatternTable() {
@@ -53,11 +81,15 @@ function createPatternTable() {
 
 function createPatternRows() {
     let html = "";
+    let selectedClass = "";
     for (let i = 0; i < model.data.pattern.length; i++) {
-        
+        if (model.input.assortment.pattern.selected.find(selectedId => selectedId == model.data.pattern[i].id))
+            selectedClass = "class='bordered'";
+        else
+            selectedClass = "";
         html += /*HTML*/ `
          <tr>
-        <td data-patternid=${model.data.pattern[i].id} class="bordered" id="pattern${i}" onclick="patternClicked(this)">
+        <td data-patternid=${model.data.pattern[i].id} ${selectedClass} id="pattern${i}" onclick="patternClicked(this)">
      ${model.data.pattern[i].name}
         </td>
         </tr>
