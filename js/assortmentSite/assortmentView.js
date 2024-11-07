@@ -11,12 +11,7 @@ function updateViewAssortment() {
 
         <div class="assortmentContainer2">
         <div class="assortmentInput"> 
-        <select id="yarns" name="yarns">
-         <option value="Mohair">Mohair</option>
-         <option value="Bomull">Bomull</option>
-         <option value="Ull">Ull</option>
-         <option value="Merinoull">Merinoull</option>
-        </select>
+        ${drawYarnOptions()}
 
         ${drawColorAlts()}
 
@@ -30,21 +25,30 @@ function updateViewAssortment() {
     `;
 }
 
-function drawColorAlts(){
-    html = /*HTML*/ ``
 
+function drawYarnOptions() {
+    let html = `<select onchange="model.input.assortment.yarn.typeId=model.data.yarn[2].id" id="yarns" name="yarns">`;
 
-    <select id="colors" name="colors" size="4" multiple>
-    <option value="Rød">Rød</option>
-    <option value="Grønn">Grønn</option>
-    <option value="Ull">Ull</option>
-    <option value="Merinoull">Merinoull</option>
-   </select>
-
-    for(i = 0; i < model.data.colorAlt.length; i++)
-
+    let selected = false
     
+    
+    for (i = 0; i < model.data.yarn.length; i++){
+        if(model.input.assortment.yarn.typeId == model.data.yarn[i].id)
+            selected = true;
+        html += `<option  value="${model.data.yarn[i].id}" ${selected ? "selected" : ""}>${model.data.yarn[i].type}</option>`;
+        selected = false;
+    }
 
+        
+    html += '</select>';
+    return html;
+}
+
+function drawColorAlts() {
+    html = /*HTML*/ `<select id="colors" name="colors" size="${model.data.colorAlt.length}" multiple>`
+    for (i = 0; i < model.data.colorAlt.length; i++)
+        html += `<option value="${model.data.colorAlt[i].color}">${model.data.colorAlt[i].color}</option>`
+    html += '</select>'
     return html
 }
 

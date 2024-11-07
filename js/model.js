@@ -53,7 +53,7 @@ const model = {
     },
     assortment: {
       yarn: {
-        type: "",
+        typeId: 0,
         color: [],
       },
       pattern: {
