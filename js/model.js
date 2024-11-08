@@ -20,6 +20,8 @@ const model = {
       category: "",
       quantity: null,
       productInfo: "",
+      patternId: "",
+      size: "",
     },
     productAlbum: {
       id: null,

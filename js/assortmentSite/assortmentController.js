@@ -45,6 +45,15 @@ function addAssortment(){
         return
     let newId = Math.max(...model.data.assortment.map(assortmentObject => assortmentObject.id)) + 1;
     model.data.assortment.push({ id: newId, yarnId: model.input.assortment.yarn.typeId, colorIds: []});
+    let index = model.data.assortment.findIndex(checkDataId, newId)
+    for(let i = 0; i < model.input.assortment.yarn.colorIds.length; i++){
+          model.data.assortment[index].colorIds.push(model.input.assortment.yarn.colorIds[i]) 
+    }
+
+ 
+
+
+    model.input.assortment.yarn.colorIds = [];
     model.input.assortment.yarn.typeId = "";
     updateView();
 }
