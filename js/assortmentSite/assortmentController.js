@@ -10,7 +10,7 @@ function pushNewPattern() {
 function removePattern() {
 
     for (let i = 0; i < model.input.assortment.pattern.selected.length; i++) {
-        let index = model.data.pattern.findIndex(checkDataPatternId, model.input.assortment.pattern.selected[i])
+        let index = model.data.pattern.findIndex(checkDataId, model.input.assortment.pattern.selected[i])
         if (index >= 0) {
             model.data.pattern.splice(index, 1)
         }
@@ -21,8 +21,31 @@ function removePattern() {
 
 }
 
-function checkDataPatternId(patternObject) {
-    return patternObject.id == this
+function checkDataId(thisObject) {
+    return thisObject.id == this
 }
 
+function removeAssortment(){
+    for(let i = 0; i < model.input.assortment.yarn.selected.length; i++){
+
+    
+        let index = model.data.assortment.findIndex(checkDataId, model.input.assortment.yarn.selected[i])
+        if (index >= 0) {
+            model.data.assortment.splice(index, 1)
+        }
+    }
+    
+    model.input.assortment.yarn.selected = [];
+    updateView();
+}
+
+
+function addAssortment(){
+    if(model.input.assortment.yarn.typeId === "")
+        return
+    let newId = Math.max(...model.data.assortment.map(assortmentObject => assortmentObject.id)) + 1;
+    model.data.assortment.push({ id: newId, yarnId: model.input.assortment.yarn.typeId, colorIds: []});
+    model.input.assortment.yarn.typeId = "";
+    updateView();
+}
 

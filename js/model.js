@@ -53,14 +53,17 @@ const model = {
     },
     assortment: {
       yarn: {
-        typeId: 0,
-        color: [],
+        typeId: "",
+        colorIds: [],
+        selected: [],
       },
       pattern: {
         name: "",
         patternImg: "",
         selected: [],
       },
+    
+      
     },
   },
   data: {
