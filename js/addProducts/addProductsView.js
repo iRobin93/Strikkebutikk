@@ -4,14 +4,13 @@ function updateViewAdd() {
           <div>
             <input id="fileField" type="file" onchange="readFile(this)"style="display:none;"/>
             <label class="button" for="fileField">Velg fil</label>
-            <img src="${showImage(model.input.createProduct.imgByteStream)}" id="productImage" />
+            <img src="${showImage(model.input.createProduct.imgByteStream)}" alt="Velg Bilde" id="productImage" />
           </div>
           <div class="input-container">
             ${drawInput()}
             
         </div>
 `;
-
 }
 
 /*
@@ -110,7 +109,7 @@ function createProduct() {
   } else {
     let newProduct = {
       id: getId(),
-      productAlbum: [null],
+      productAlbum: [],
       productName: createProduct.productName,
       colorAlt: createProduct.colorAlt,
       yarnTypes: createProduct.yarnTypes,
@@ -119,11 +118,27 @@ function createProduct() {
       quantity: createProduct.quantity,
       productInfo: createProduct.productInfo,
       patternId: createProduct.patternId,
+      productImg: createProduct.imgByteStream,
     };
-
+    resetInputProductFields();
     model.data.products.push(newProduct);
     updateView();
   }
+}
+
+function resetInputProductFields(){
+  let createProduct = model.input.createProduct;
+
+  createProduct.productName = "";
+  createProduct.colorAlt = "";
+  createProduct.yarnTypes = "";
+  createProduct.size = "";
+  createProduct.category = "";
+  createProduct.quantity = 0;
+  createProduct.productInfo = "";
+  createProduct.patternId = "";
+  createProduct.imgByteStream = "";
+  createProduct.imgName = "";
 }
 
 function getId() {

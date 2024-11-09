@@ -18,16 +18,15 @@ const model = {
       colorAlt: "",
       yarnTypes: "",
       category: "",
-      quantity: null,
+      quantity: 0,
       productInfo: "",
       patternId: "",
       size: "",
-      imgName: "Legg til bilde",
+      imgName: "",
       imgByteStream: "",
     },
-    sizes: {
-      id: null,
-      size: "",
+    product: {
+      id: 11,
     },
     designer: {
       product: "",
@@ -163,8 +162,8 @@ const model = {
     products: [
       {
         id: 0,
+        productImg: "source/img/seven-sister-genser.png",
         productAlbum: [
-          "source/img/seven-sister-genser.png",
           "source/img/seven-sisters1.png",
           "source/img/seven-sisters2.png",
           "source/img/seven-sisters3.png",
@@ -173,14 +172,13 @@ const model = {
         //sizes: ["s", "m", "l"],
         category: "Genser",
         quantity: 2,
-
         productInfo:
           "Genseren strikkes sømløst ovenfra og ned og har et grafisk rutemønstersom minner om det ikoniskerutemønsteret som finnes på setene på t-banen i London. Det fremre og bakre bærestykket, samt raglanermene, strikkes samtidig i ett stykke for å oppnå nøyaktig samme mål.",
       },
       {
         id: 1,
+        productImg: "source/img/bobbie-genser.jpg",
         productAlbum: [
-          "source/img/bobbie-genser.jpg",
           "source/img/bobbie-genser1.jpg",
           "source/img/bobbie-genser2.jpg",
           "source/img/bobbie-genser3.jpg",
