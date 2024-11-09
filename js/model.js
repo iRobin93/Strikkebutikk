@@ -22,10 +22,8 @@ const model = {
       productInfo: "",
       patternId: "",
       size: "",
-    },
-    productAlbum: {
-      id: null,
-      image: "",
+      imgName: "Legg til bilde",
+      imgByteStream: "",
     },
     sizes: {
       id: null,
