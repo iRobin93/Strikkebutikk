@@ -1,5 +1,5 @@
 function updateViewAdd() {
-    app.innerHTML += /*html*/ ` 
+  app.innerHTML += /*html*/ ` 
         <div class="create-container">             
           <div>
             <input id="fileField" type="file" onchange="readFile(this)"style="display:none;"/>
@@ -38,18 +38,18 @@ function drawInput() {
   </div>
   
   <div>
+    <label for="pYarn">Garntype:</label>
+    ${drawYarnOptionsProductView()}
+  </div>  
+
+  <div>
     <label for="pColor">Farge:</label>
     <input value="${model.input.createProduct.colorAlt}"  type="text" placeholder="farge alternativ" id="pColor"
-    onchange="model.input.createProduct.colorAlt=this.value"
-     />
+    onchange="model.input.createProduct.colorAlt=this.value"/>
+     
   </div>    
   
-  <div>
-    <label for="pYarn">Garntype:</label>
-    <input value="${model.input.createProduct.yarnTypes}"  type="text" placeholder="garntype" id="pYarn"
-    onchange="model.input.createProduct.yarnTypes=this.value"
-     />
-  </div>  
+
 
   <div>
     <label for="pSize">Størrelse:</label>
@@ -126,7 +126,7 @@ function createProduct() {
   }
 }
 
-function resetInputProductFields(){
+function resetInputProductFields() {
   let createProduct = model.input.createProduct;
 
   createProduct.productName = "";
@@ -159,17 +159,17 @@ async function readFile(fileInput) {
 }
 
 function showImage(imageBytes) {
-  if(imageBytes == "")
+  if (imageBytes == "")
     return "";
 
-  
+
 
   const blob = new Blob([imageBytes], {
     type: "image/jpeg",
   });
   const urlCreator = window.URL || window.webkitURL;
   const imageUrl = urlCreator.createObjectURL(blob);
-  
+
   return imageUrl;
 }
 
@@ -194,4 +194,37 @@ function drawPatternOptions() {
 
   html += '</select>';
   return html;
+}
+
+function drawYarnOptionsProductView() {
+ 
+  let selected2 = false;
+  if (model.input.createProduct.yarnTypes === "")
+    selected2 = true;
+  let html = /*HTML*/ `<select ${selected2 ? "selected" : ""} onchange="model.input.createProduct.yarnTypes=this.value == '' ? '' : Number(this.value)" id="createMenuYarn" name="createMenuYarn">
+      <option value="">Velg Garn</option>`;
+
+  let selected = false
+
+
+  for (i = 0; i < model.data.assortment.length; i++) {
+    if (model.input.createProduct.yarnTypes === model.data.assortment[i].id)
+      selected = true;
+    html += `<option  value="${model.data.assortment[i].id}" ${selected ? "selected" : ""}>${getYarnType(i)}</option>`;
+    selected = false;
+  }
+
+
+  html += '</select>';
+  return html;
+}
+
+function getYarnType(index) {
+  let yarnObject = model.data.yarn.find(x => x.id == model.data.assortment[index].yarnId)
+
+  return yarnObject.type
+}
+
+function drawColorAltProductView(){
+      
 }
