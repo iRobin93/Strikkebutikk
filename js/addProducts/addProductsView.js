@@ -44,8 +44,7 @@ function drawInput() {
 
   <div>
     <label for="pColor">Farge:</label>
-    <input value="${model.input.createProduct.colorAlt}"  type="text" placeholder="farge alternativ" id="pColor"
-    onchange="model.input.createProduct.colorAlt=this.value"/>
+    ${drawColorAltProductView()}
      
   </div>    
   
@@ -96,8 +95,8 @@ function createProduct() {
 
   if (
     !createProduct.productName ||
-    !createProduct.colorAlt ||
-    !createProduct.yarnTypes ||
+    createProduct.colorAlt.length == 0 ||
+    createProduct.yarnTypes === "" ||
     !createProduct.size ||
     !createProduct.category ||
     !createProduct.quantity ||
@@ -111,7 +110,7 @@ function createProduct() {
       id: getId(),
       productAlbum: [],
       productName: createProduct.productName,
-      colorAlt: createProduct.colorAlt,
+      colorAlt: [],
       yarnTypes: createProduct.yarnTypes,
       sizes: [createProduct.size],
       category: createProduct.category,
@@ -120,6 +119,9 @@ function createProduct() {
       patternId: createProduct.patternId,
       productImg: createProduct.imgByteStream,
     };
+
+    for(let i = 0; i < model.input.createProduct.colorAlt.length; i++)
+      newProduct.colorAlt.push(Number(model.input.createProduct.colorAlt[i]))
     resetInputProductFields();
     model.data.products.push(newProduct);
     updateView();
@@ -130,7 +132,7 @@ function resetInputProductFields() {
   let createProduct = model.input.createProduct;
 
   createProduct.productName = "";
-  createProduct.colorAlt = "";
+  createProduct.colorAlt = [];
   createProduct.yarnTypes = "";
   createProduct.size = "";
   createProduct.category = "";
@@ -197,11 +199,11 @@ function drawPatternOptions() {
 }
 
 function drawYarnOptionsProductView() {
- 
+
   let selected2 = false;
   if (model.input.createProduct.yarnTypes === "")
     selected2 = true;
-  let html = /*HTML*/ `<select ${selected2 ? "selected" : ""} onchange="model.input.createProduct.yarnTypes=this.value == '' ? '' : Number(this.value)" id="createMenuYarn" name="createMenuYarn">
+  let html = /*HTML*/ `<select ${selected2 ? "selected" : ""} onchange="model.input.createProduct.yarnTypes=this.value == '' ? '' : Number(this.value); updateView()" id="createMenuYarn" name="createMenuYarn">
       <option value="">Velg Garn</option>`;
 
   let selected = false
@@ -225,6 +227,47 @@ function getYarnType(index) {
   return yarnObject.type
 }
 
-function drawColorAltProductView(){
+
+
+
+function drawColorAltProductView() {
+
+  let html = /*HTML*/ `<select onchange="changedColorAltProductViewInput(this)" multiple id="createMenuColors" name="createMenuColors">
+  `;
+  
+  if (model.input.createProduct.yarnTypes === "")
+    return "";
+  let selected = false
+  let assortmentObject = model.data.assortment.find(x => x.id == model.input.createProduct.yarnTypes)
+
+  for (let i = 0; i < assortmentObject.colorIds.length; i++) {
+    for(let j = 0; j < model.input.createProduct.colorAlt.length; j++)
+    if (model.input.createProduct.colorAlt[j] === assortmentObject.colorIds[i]){
+      selected = true;
+    }
       
+    html += `<option  value="${assortmentObject.colorIds[i]}" ${selected ? "selected" : ""}>${getColorAlt(assortmentObject.colorIds[i])}</option>`;
+    selected = false;
+  }
+
+
+
+
+  html += '</select>';
+  return html;
+}
+
+function changedColorAltProductViewInput(element) {
+  model.input.createProduct.colorAlt = [];
+  for (let i = 0; i < element.options.length; i++) {
+    if (element.options[i].selected == true)
+      model.input.createProduct.colorAlt.push(Number(element.options[i].value))
+  }
+}
+
+function getColorAlt(colorId) {
+
+  let colorObject = model.data.colorAlt.find(x => x.id == colorId)
+
+  return colorObject.color
 }
