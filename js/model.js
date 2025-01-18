@@ -26,7 +26,7 @@ const model = {
       imgByteStream: "",
     },
     product: {
-      id: 11,
+      id: 1,
     },
     designer: {
       product: "",
@@ -170,8 +170,10 @@ const model = {
         ],
         productName: "Seven Sisters - genser",
         //sizes: ["s", "m", "l"],
-        category: "Genser",
+        category: "genser",
+        patternId: 0,
         quantity: 2,
+        assortmentId: 0,
         productInfo:
           "Genseren strikkes sømløst ovenfra og ned og har et grafisk rutemønstersom minner om det ikoniskerutemønsteret som finnes på setene på t-banen i London. Det fremre og bakre bærestykket, samt raglanermene, strikkes samtidig i ett stykke for å oppnå nøyaktig samme mål.",
       },
@@ -186,7 +188,9 @@ const model = {
         productName: "Bobbie - genser",
         sizes: ["s", "xl"],
         category: "genser",
+        patternId: 0,
         quantity: 1,
+        assortmentId: 1,
         productInfo:
           "Enkel, lett over-size raglan-genser strikket ovenfra og ned",
       },
@@ -201,7 +205,9 @@ const model = {
         productName: "Floreal Top",
         sizes: ["m", "l", "xl"],
         category: "genser",
+        patternId: 2,
         quantity: 3,
+        assortmentId: 1,
         productInfo:
           "Denne komfortable toppen strikkes ovenfra og ned, sømløst og i ett stykke.",
       },
@@ -216,7 +222,9 @@ const model = {
         productName: "Meadow Sunset - Wrap",
         sizes: ["s/m", "l/xl"],
         category: "skjerf",
+        patternId: 1,
         quantity: 4,
+        assortmentId: 1,
         productInfo:
           "Meadow Sunset Wrap er en kombinasjon av et strikket sjal og en genser. Det er strikket så man kan svøpe seg i det.",
       },
@@ -231,7 +239,9 @@ const model = {
         productName: "Winter Happiness - Sjal",
         sizes: ["s/m", "l/xl"],
         category: "skjerf",
+        patternId: 0,
         quantity: 4,
+        assortmentId: 1,
         productInfo:
           "Gå vinteren i møte med et stort, lekkert og lunt sjal, som du riktig kan tulle deg inn i når kulden riktig biter. ",
       },
@@ -246,7 +256,9 @@ const model = {
         productName: "Muse Shawl",
         sizes: ["s/m", "l/xl"],
         category: "skjerf",
+        patternId: 0,
         quantity: 3,
+        assortmentId: 1,
         productInfo:
           "Muse er et trekantsjal, strikket ovenfra og ned med økninger på hver rettsiderad.",
       },
@@ -261,7 +273,9 @@ const model = {
         productName: "Rosmarino - Ankelsokk",
         sizes: ["s", "m", "l"],
         category: "sokker",
+        patternId: 0,
         quantity: 7,
+        assortmentId: 1,
         productInfo:
           "Sokken strikkes ovenfra og ned, med start i en dekorativt kant, deretter benyttes det et hullmønster for leggen.",
       },
@@ -276,7 +290,9 @@ const model = {
         productName: "Bell - Julestrømpe",
         sizes: ["s", "m", "l"],
         category: "sokker",
+        patternId: 0,
         quantity: 9,
+        assortmentId: 1,
         productInfo: "Strømpene er strikket med ribb på både skaft og vrist.",
       },
       {
@@ -290,7 +306,9 @@ const model = {
         productName: "Harper - Vanter",
         sizes: ["s", "m", "l"],
         category: "votter",
+        patternId: 0,
         quantity: 5,
+        assortmentId: 1,
         productInfo:
           "Fine, enkle vanter strikket rundt på strømpepinner fra mansjetten og opp.",
       },
@@ -305,7 +323,9 @@ const model = {
         productName: "Kogle - Votter",
         sizes: ["s", "m", "l"],
         category: "votter",
+        patternId: 0,
         quantity: 3,
+        assortmentId: 1,
         productInfo:
           "Fine votter med et enkelt seersucker-mønster. Vottene har en bred, myk mansjett som sørger for at de både varmer og sitter godt på håndleddet.",
       },
@@ -320,7 +340,9 @@ const model = {
         productName: "Rubin - Kjæreste-vott",
         sizes: ["s", "m", "l"],
         category: "votter",
+        patternId: 0,
         quantity: 2,
+        assortmentId: 1,
         productInfo:
           "Kjæreste-votten er simpelthen en must-have, så du og kjæresten kan holde hendene varme, mens dere også holder hender i vinterkulden.",
       },

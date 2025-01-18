@@ -5,12 +5,12 @@ function updateViewOverview()
     html += /*HTML*/ `
                     <table>
                         <tr>
-                            <th>Oppgave</th>
-                            <th>Person</th>
-                            <th>Frist</th>
-                            <th>Gjort</th>
-                            <th></th>
-                            <th></th>
+                            <th>Bilde</th>
+                            <th>Produktnavn</th>
+                            <th>Kategori</th>
+                            <th>Mønster</th>
+                            <th>Garn</th>
+                            <th>Antall</th>
                             
                         </tr>`;
 
@@ -30,7 +30,12 @@ function createHtmlRowOverview(i)
     let product = model.data.products[i];
     return /*HTML*/ `
                         <tr>
-                            <td>${product.productImg}</td>
+                            <td><img class="ProductPicture" src="${showProductImage(i)}"/></td>
+                            <td>${product.productName}</td>
+                            <td>${product.category}</td>
+                            <td>${model.data.pattern[product.patternId].name}</td>
+                            <td>${getYarnType(product.assortmentId)}</td>
+                            <td>${product.quantity}</td>
                         </tr>
     
     

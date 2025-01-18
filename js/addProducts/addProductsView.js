@@ -111,7 +111,7 @@ function createProduct() {
       productAlbum: [],
       productName: createProduct.productName,
       colorAlt: [],
-      yarnTypes: createProduct.yarnTypes,
+      assortmentId: createProduct.yarnTypes,
       sizes: [createProduct.size],
       category: createProduct.category,
       quantity: createProduct.quantity,
@@ -133,7 +133,7 @@ function resetInputProductFields() {
 
   createProduct.productName = "";
   createProduct.colorAlt = [];
-  createProduct.yarnTypes = "";
+  createProduct.assortmentId = "";
   createProduct.size = "";
   createProduct.category = "";
   createProduct.quantity = 0;
