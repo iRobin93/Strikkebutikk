@@ -10,7 +10,7 @@ function updateViewOverview()
                             <th>Kategori</th>
                             <th>Mønster</th>
                             <th>Garn</th>
-                            <th>Antall</th>
+                            <th>Antall på lager</th>
                             
                         </tr>`;
 
@@ -29,11 +29,11 @@ function createHtmlRowOverview(i)
 {
     let product = model.data.products[i];
     return /*HTML*/ `
-                        <tr>
+                        <tr onclick="model.input.product.id = ${product.id}; model.app.page = 'productSite'; updateView(); ">
                             <td><img class="ProductPicture" src="${showProductImage(i)}"/></td>
                             <td>${product.productName}</td>
                             <td>${product.category}</td>
-                            <td>${model.data.pattern[product.patternId].name}</td>
+                            <td>${getPatternName(product.patternId)}</td>
                             <td>${getYarnType(product.assortmentId)}</td>
                             <td>${product.quantity}</td>
                         </tr>

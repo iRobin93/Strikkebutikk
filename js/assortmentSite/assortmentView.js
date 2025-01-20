@@ -94,7 +94,7 @@ function createPatternRows() {
         html += /*HTML*/ `
          <tr>
         <td data-patternid=${model.data.pattern[i].id} ${selectedClass} id="pattern${i}" onclick="patternClicked(this)">
-     ${model.data.pattern[i].name}
+     ${getPatternName(i)}
         </td>
         </tr>
         `

@@ -39,6 +39,16 @@
   margin-top: 5%;
 }
 
+.productAlbumImg{
+  height: 65px;
+  width: 65px;
+}
+
+.productSiteContainer0{
+  display: grid;
+  grid-template-columns: 210px auto auto;
+  margin-top: 5%;
+}
 
 .bordered{
   border: dashed 2px orange;
