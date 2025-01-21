@@ -16,4 +16,16 @@ function getColorAlt(colorId)
     return colorObject.color
 }
 
-  
+function readFromSql()
+{
+    console.log(model.data.products);
+    const apiURL = 'https://localhost:7022/Product';
+    axios.get(apiURL)
+    .then(response => {
+        model.data.products = response.data;
+        console.log(model.data.products);
+    })
+    .catch(error =>{
+        console.error('Error!', error);
+    });
+}
