@@ -1,8 +1,7 @@
-function updateViewProduct()
-{
-    index = model.data.products.findIndex(productObject => productObject.id == model.input.product.id)
-    productObject = model.data.products[index];
-    
+function updateViewProduct() {
+    let index = model.data.products.findIndex(productObject => productObject.id == model.input.product.id)
+    let productObject = model.data.products[index];
+
 
     app.innerHTML += /*HTML*/ ` 
     <div class="productSiteContainer0">
@@ -19,17 +18,16 @@ function updateViewProduct()
 `;
 }
 
-function showProductImage(index){
+function showProductImage(index) {
     let productObject = model.data.products[index];
-    if(typeof productObject.productImg === 'string' || productObject.productImg instanceof String)
+    if (typeof productObject.productImg === 'string' || productObject.productImg instanceof String)
         return productObject.productImg;
     else
         return showImage(productObject.productImg);
 }
 
 
-function drawProductSiteContainer1(productObject, index)
-{
+function drawProductSiteContainer1(productObject, index) {
     let html = /*HTML*/`
     
     <img src="${showProductImage(index)}"/>
@@ -43,16 +41,34 @@ function drawProductSiteContainer1(productObject, index)
 function drawProductSiteContainer2(productObject) {
     let html = /*HTML*/`
     <div>${productObject.productName}</div>
-
+    <div>Tilgjengelige farger: <select></select></div>
 
 `
 
-return html;
+    return html;
 }
 
-function drawProductSiteContainer3(productObject)
-{
+
+
+function drawProductSiteContainer3(productObject) {
+    return "";
+}
+
+
+function getAvailableColors(productObject) {
+    let html = "";
+    let index = model.data.assortment.findIndex(assortmentObject => productObject.id == assortmentObject.id)
+    model.data.assortment[index].colorIds.forEach((colorId) =>{
+        let indexColor = model.data.colorAlt.findIndex(colorObject => colorId == colorObject.id)
+        html += /*HTML*/ `
     
+    
+    `;
+    });
+
+
+
+    return html;
 }
 
 
@@ -62,9 +78,7 @@ function drawProductSiteContainer3(productObject)
 
 
 
-
-function TEst()
-{
+function TEst() {
     html += `<div class="sortimentText"></div>
     <div class="assortmentContainer">
     <div><img src="${showProductImage(index)}" id="productImage" /></div> 

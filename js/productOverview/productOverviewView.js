@@ -29,7 +29,7 @@ function createHtmlRowOverview(i)
 {
     let product = model.data.products[i];
     return /*HTML*/ `
-                        <tr onclick="model.input.product.id = ${product.id}; model.app.page = 'productSite'; updateView(); ">
+                        <tr style="cursor: pointer;" onclick="model.input.product.id = ${product.id}; model.app.page = 'productSite'; updateView(); ">
                             <td><img class="ProductPicture" src="${showProductImage(i)}"/></td>
                             <td>${product.productName}</td>
                             <td>${product.category}</td>
