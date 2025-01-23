@@ -1,5 +1,5 @@
 function updateViewProduct() {
-    let index = model.data.products.findIndex(productObject => productObject.id == model.input.product.id)
+    let index = model.data.products.findIndex(productObject => productObject.id == model.input.productSite.id)
     let productObject = model.data.products[index];
 
 
@@ -28,6 +28,8 @@ function showProductImage(index) {
 
 
 function drawProductSiteContainer1(productObject, index) {
+
+    
     let html = /*HTML*/`
     
     <img src="${showProductImage(index)}"/>
@@ -39,9 +41,12 @@ function drawProductSiteContainer1(productObject, index) {
 }
 
 function drawProductSiteContainer2(productObject) {
+    let selected2 = false;
+    if (model.input.productSite.colorId === "")
+        selected2 = true;
     let html = /*HTML*/`
     <div>${productObject.productName}</div>
-    <div>Tilgjengelige farger: <select></select></div>
+    <div>Tilgjengelige farger: <select  ${selected2 ? "selected" : ""} onchange="model.input.productSite.colorId=this.value == '' ? '' : Number(this.value)"> <option value="">Velg Farge</option>${getAvailableColors(productObject)}</select></div>
 
 `
 
@@ -56,14 +61,18 @@ function drawProductSiteContainer3(productObject) {
 
 
 function getAvailableColors(productObject) {
+    let selected = false;
     let html = "";
-    let index = model.data.assortment.findIndex(assortmentObject => productObject.id == assortmentObject.id)
-    model.data.assortment[index].colorIds.forEach((colorId) =>{
-        let indexColor = model.data.colorAlt.findIndex(colorObject => colorId == colorObject.id)
+    let assortmentObject = findAssortmentObjectById(productObject.assortmentId);
+    assortmentObject.colorIds.forEach((colorId) =>{
+        let colorObject = findColorObjectById(colorId);
+        if(model.input.productSite.colorId === colorId)
+            selected = true;
         html += /*HTML*/ `
-    
-    
+        <option ${selected ? "selected" : ""} value="${colorObject.id}">${colorObject.color}</option>
+        
     `;
+    selected = false;
     });
 
 

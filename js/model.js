@@ -25,8 +25,10 @@ const model = {
       imgName: "",
       imgByteStream: "",
     },
-    product: {
+    productSite: {
       id: 1,
+      colorId: "",
+
     },
     designer: {
       product: "",
