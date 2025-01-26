@@ -43,12 +43,12 @@ const model = {
     },
     shoppingCart: {
       shoppingCartLines: [
-        {
-          productId: 1,
-          quantity: 1,
-          colorId: 5,
-          size: "s",
-        }
+        // {
+        //   productId: 1,
+        //   quantity: 1,
+        //   colorId: 5,
+        //   size: "s",
+        // }
       ],
 
     },

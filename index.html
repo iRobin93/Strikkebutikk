@@ -53,7 +53,9 @@
     <script src="js/shoppingCartSite/shoppingCartSiteController.js"></script>
 
     <script>
-      //readFromSql();
+      let useBackend = true;
+      if(useBackend)
+        readFromSql();
       updateView();
 
       function updateView() {
