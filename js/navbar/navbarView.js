@@ -37,7 +37,7 @@ function bottomNavBar() {
   <div><p onclick="model.app.page = 'overview'; updateView();" class="hover">Produktoversikten</p></div>
   <div><p onclick="model.app.page = 'productSite'; updateView();" class="hover">Produkter</p></div>
   <div><p onclick="model.app.page = 'main'; updateView();" class="hover">Design ditt produkt</p></div>
-  <div><p onclick="model.app.page = 'addProducts'; updateView();" class="hover">Om Meg</p></div>
+  <div><p onclick="model.app.page = 'main'; updateView();" class="hover">Om Meg</p></div>
   </div>
     `;
   return html;
