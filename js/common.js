@@ -21,7 +21,7 @@ function findColorObjectById(colorId) {
     return model.data.colorAlt.find(colorObject => colorId == colorObject.id)
 }
 
-async function readFromSql() {
+async function readFromSqlAndUpdateView() {
     console.log(model.data.products);
     const apiURL = 'https://localhost:7022/Product';
 
@@ -67,7 +67,7 @@ async function readFromSql() {
             console.error('Error!', error);
         });
 
-        
+        updateView();
 }
 
 function findProductIndexById(productId){

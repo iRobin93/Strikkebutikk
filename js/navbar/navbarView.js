@@ -8,8 +8,6 @@ function showNavBar() {
   return html;
 }
 
-let loginVar = "Logg Inn";
-
 function topNavBar() {
 
   let displayNone = "style='Display: none;'";
@@ -25,7 +23,7 @@ function topNavBar() {
     <span id="myAlertNumber" ${displayNone} class="alert-number">${model.input.shoppingCart.shoppingCartLines.length}</span>
   </button>
     </div>
-  <div><p onclick="model.app.page = 'logIn'; updateView();" class="hover">${loginVar}</p></div>
+  <div><p onclick="model.app.page = 'logIn'; if(model.app.isAdmin) {model.app.isAdmin = false; model.app.page = 'main'} updateView();" class="hover">${model.app.isAdmin ? "Logg Ut" : "Logg Inn"}</p></div>
   </div>
   `;
 

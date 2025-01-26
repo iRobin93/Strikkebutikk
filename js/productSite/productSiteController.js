@@ -19,6 +19,10 @@ function addToCart() {
             colorId: model.input.productSite.colorId,
             size: model.input.productSite.size,
         });
+        model.input.productSite.chosenCount = 0;
+        model.input.productSite.colorId = "";
+        model.input.productSite.size = "";
+
         updateView();
     }
 

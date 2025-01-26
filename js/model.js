@@ -3,15 +3,15 @@ const app = document.getElementById("app");
 const model = {
   app: {
     page: "main", //"logIn", "overview", "productSite", "addProducts"
-    isAdmin: true,
+    isAdmin: false,
   },
   input: {
     searchField: {
       inputSearch: "",
     },
     logIn: {
-      username: "",
-      password: "",
+      username: "Rebecka",
+      password: "1234",
     },
     createProduct: {
       productName: "",

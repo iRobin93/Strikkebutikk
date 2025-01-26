@@ -53,10 +53,11 @@
     <script src="js/shoppingCartSite/shoppingCartSiteController.js"></script>
 
     <script>
-      let useBackend = true;
+      let useBackend = false;
       if(useBackend)
-        readFromSql();
-      updateView();
+        readFromSqlAndUpdateView();
+      else
+        updateView();
 
       function updateView() {
         const page = model.app.page;

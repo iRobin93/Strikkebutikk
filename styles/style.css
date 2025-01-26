@@ -38,9 +38,8 @@
   grid-template-columns: auto auto auto auto auto auto;
   margin-top: 5%;
 }
-.productSiteContainer3{
-  margin-top: 200px;
-}
+
+
 
 .productAlbumImg{
   height: 65px;
@@ -49,14 +48,22 @@
 
 .productSiteContainer0{
   display: grid;
-  grid-template-columns: 210px auto auto;
+  grid-template-columns: 210px 10px auto;
   margin-top: 5%;
+}
+.productSiteContainer1{
 }
 .productSiteContainer2{
   display: grid;
   grid-template-columns: 210px auto auto;
   margin-top: 5%;
 }
+
+.productSiteContainer3{
+  margin-top: 400px;
+}
+
+
 .bordered{
   border: dashed 2px orange;
 }
@@ -142,4 +149,80 @@ tr:nth-child(even) {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+.product-container {
+  font-family: Arial, sans-serif;
+  width: 560px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.product-attribute {
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.product-select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.spacer {
+  margin-bottom: 15px;
+}
+
+.count-buttons {
+  display: flex;
+  align-items: center;
+}
+.product-info {
+  margin-top: 20px;
+  font-style: italic;
+  color: #555;
+}
+
+/* Shipping Section */
+.shipping-container {
+  padding-top: 20px;
+  margin-top: 30px;
+  border-top: 2px solid #ccc;
+}
+
+.shipping-item {
+  margin-bottom: 20px;
+}
+
+.value {
+  font-size: 16px;
+  color: #555;
+}
+
+.shipping-action {
+  text-align: center;
+}
+
+.shipping-item .label, .shipping-action .button {
+  font-size: 16px;
+}
+
+.shipping-action .button {
+  width: auto;
+  margin: 0;
 }
