@@ -13,7 +13,7 @@ function createProduct() {
 
   if (
     !createProduct.productName ||
-    createProduct.colorAlt.length == 0 ||
+    createProduct.productPrice == 0 ||
     createProduct.yarnTypes === "" ||
     !createProduct.size ||
     !createProduct.category ||
@@ -26,9 +26,11 @@ function createProduct() {
   } else {
     let newProduct = {
       id: getNewProductId(),
-      productAlbum: [],
+      productAlbum: ["source/img/seven-sisters1.png",
+          "source/img/seven-sisters2.png",
+          "source/img/seven-sisters3.png",],
       productName: createProduct.productName,
-      colorAlt: [],
+      price: createProduct.productPrice,
       assortmentId: createProduct.yarnTypes,
       sizes: [createProduct.size],
       category: createProduct.category,
@@ -38,15 +40,12 @@ function createProduct() {
       productImg: createProduct.imgByteStream,
     };
 
-    for (let i = 0; i < model.input.createProduct.colorAlt.length; i++)
-      newProduct.colorAlt.push(Number(model.input.createProduct.colorAlt[i]))
     resetInputProductFields();
     model.data.products.push(newProduct);
     if (useBackend) {
       newProduct.productImg = "source/img/seven-sister-genser.png"
       newProduct.sizesJSON = JSON.stringify(newProduct.sizes);
       newProduct.productAlbumJSON = JSON.stringify(model.data.products[0].productAlbum);
-      newProduct.price = 900;
       delete newProduct.id;
       delete newProduct.sizes;
       delete newProduct.productAlbum;
@@ -62,7 +61,7 @@ function resetInputProductFields() {
   let createProduct = model.input.createProduct;
 
   createProduct.productName = "";
-  createProduct.colorAlt = [];
+  createProduct.productPrice = 0;
   createProduct.assortmentId = "";
   createProduct.size = "";
   createProduct.category = "";

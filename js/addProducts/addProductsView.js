@@ -1,15 +1,18 @@
 function updateViewAdd() {
+  let imgText = showImage(model.input.createProduct.imgByteStream) == "" ? "hidden" : ""; 
   app.innerHTML += /*html*/ ` 
-        <div class="create-container">             
+  <div class="create-container">             
           <div>
             <input id="fileField" type="file" onchange="readFile(this)"style="display:none;"/>
-            <label class="button" for="fileField">Velg fil</label>
-            <img src="${showImage(model.input.createProduct.imgByteStream)}" alt="Velg Bilde" id="productImage" />
+            <label class="button" for="fileField">Velg fil for bilde!</label>
+            <div>&nbsp;</div>
+            <img ${imgText} src="${showImage(model.input.createProduct.imgByteStream)}" alt="" id="productImage" />
           </div>
           <div class="input-container">
             ${drawInput()}
             
         </div>
+
 `;
 }
 
@@ -30,60 +33,51 @@ function updateViewAdd() {
 function drawInput() {
   let html = "";
   html += /*html*/ `
-  <div id="label">
+  <div id="product-form">
+  <h2>Legg til Produkt</h2>
+  
+  <div class="form-group">
     <label for="pName">Produkt navn:</label>
-    <input value="${model.input.createProduct.productName}" type="text" placeholder="produktnavn" id="pName"
-    onchange="model.input.createProduct.productName=this.value"
-     />
+    <input value="${model.input.createProduct.productName}" type="text" placeholder="Skriv inn produktnavn" id="pName" onchange="model.input.createProduct.productName=this.value" />
   </div>
   
-  <div>
+  <div class="form-group">
+    <label for="pPrice">Pris:</label>
+    <input value="${model.input.createProduct.productPrice}" type="text" placeholder="Skriv inn pris" id="pPrice" onchange="model.input.createProduct.productPrice=Number(this.value)" />
+  </div>
+  
+  <div class="form-group">
     <label for="pYarn">Garntype:</label>
     ${drawYarnOptionsProductView()}
   </div>  
-
-  <div>
-    <label for="pColor">Farge:</label>
-    ${drawColorAltProductView()}
-     
-  </div>    
   
-
-
-  <div>
+  <div class="form-group">
     <label for="pSize">Størrelse:</label>
-    <input value="${model.input.createProduct.size}"  type="text" placeholder="størrelse" id="pSize"
-    onchange="model.input.createProduct.size=this.value"
-     />
+    <input value="${model.input.createProduct.size}" type="text" placeholder="Skriv inn størrelse" id="pSize" onchange="model.input.createProduct.size=this.value" />
   </div>  
 
-  <div>
+  <div class="form-group">
     <label for="pPattern">Mønster:</label>
     ${drawPatternOptions()}
   </div>  
 
-  <div>
+  <div class="form-group">
     <label for="pCategory">Kategori:</label>
-    <input value="${model.input.createProduct.category}"  type="text" placeholder="kategori" id="pCategory"
-    onchange="model.input.createProduct.category=this.value"
-     />
+    <input value="${model.input.createProduct.category}" type="text" placeholder="Skriv inn kategori" id="pCategory" onchange="model.input.createProduct.category=this.value" />
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="pQuantity">Antall:</label>
-    <input value="${model.input.createProduct.quantity}"  type="number" placeholder="antall" id="pQuantity"
-    onchange="model.input.createProduct.quantity=this.value"
-    />
+    <input value="${model.input.createProduct.quantity}" type="number" placeholder="Skriv inn antall" id="pQuantity" onchange="model.input.createProduct.quantity=this.value" />
   </div>
   
-  <div>
-    <label for="pInfo">Produkt info:</label>
-    <input value="${model.input.createProduct.productInfo}"  type="text" placeholder="produkt info" id="pInfo"
-    onchange="model.input.createProduct.productInfo=this.value"
-    style="height:50px; text-align: start;"/>
-  </div>
-  <div>
-    <button onclick="createProduct()">Legg til</button>
+  <div class="form-group">
+  <label for="pInfo">Produkt info:</label>
+  <textarea id="pInfo" placeholder="Skriv inn produktinfo" onchange="model.input.createProduct.productInfo=this.value">${model.input.createProduct.productInfo}</textarea>
+</div>
+
+  <div class="form-group">
+    <button onclick="createProduct()" class="submit-btn">Legg til Produkt</button>
   </div>
 </div>
   `;
@@ -101,6 +95,7 @@ async function readFile(fileInput) {
   model.input.createProduct.imgByteStream = byteArray
   let imageUrl = showImage(byteArray);
   document.getElementById("productImage").src = imageUrl;
+  document.getElementById("productImage").hidden = false;
 }
 
 function showImage(imageBytes) {

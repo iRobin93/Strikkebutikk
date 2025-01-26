@@ -24,7 +24,9 @@ function updateViewShoppingCart(){
     html += "</table>";
 
     html += /*HTML*/`
+    <div>&nbsp;</div>
     <div> Summen er: ${getSumOfShoppingCart()}</div>
+    <div>&nbsp;</div>
     <button class="button" onclick="buyShoppingCart()">Kjøp</button>
     `;
 

@@ -15,7 +15,7 @@ const model = {
     },
     createProduct: {
       productName: "",
-      colorAlt: [],
+      productPrice: 0,
       yarnTypes: "",
       category: "",
       quantity: 0,

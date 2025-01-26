@@ -112,6 +112,12 @@ function drawProductSiteContainer2(productObject) {
         <div>${getYarnType(productObject.assortmentId)}</div>
     </div>
 
+    <div class="product-attribute">
+        <div class="label">Mønster:</div>
+        <div>${getPatternName(productObject.patternId)}</div>
+    </div>
+
+
     <div class="shipping-container">
         <div class="shipping-item">
             <div class="label">Leveringstid:</div>
