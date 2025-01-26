@@ -28,6 +28,10 @@ const model = {
     productSite: {
       id: 1,
       colorId: "",
+      size: "",
+      chosenCount: 0,
+      
+
 
     },
     designer: {
@@ -38,10 +42,15 @@ const model = {
       size: "",
     },
     shoppingCart: {
-      products: [],
-      number: null,
-      productPrice: null,
-      amount: null,
+      shoppingCartLines: [
+        {
+          productId: 1,
+          quantity: 1,
+          colorId: 5,
+          size: "s",
+        }
+      ],
+
     },
     customerCheckout: {
       name: "",

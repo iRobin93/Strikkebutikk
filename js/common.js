@@ -27,9 +27,22 @@ function readFromSql() {
     axios.get(apiURL)
         .then(response => {
             model.data.products = response.data;
+            for(i = 0; i < model.data.products.length; i++){
+                
+                model.data.products[i].productAlbum = JSON.parse(model.data.products[i].productAlbumJSON);
+                model.data.products[i].sizes = JSON.parse(model.data.products[i].sizesJSON);
+                delete model.data.products[i].productAlbumJSON
+                delete model.data.products[i].sizesJSON
+            }
+            
             console.log(model.data.products);
         })
         .catch(error => {
             console.error('Error!', error);
         });
 }
+
+function findProductIndexById(productId){
+ return model.data.products.findIndex(productObject => productId == productObject.id);
+}
+

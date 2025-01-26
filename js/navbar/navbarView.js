@@ -11,11 +11,20 @@ function showNavBar() {
 let loginVar = "Logg Inn";
 
 function topNavBar() {
+
+  let displayNone = "style='Display: none;'";
+  if(model.input.shoppingCart.shoppingCartLines.length > 0)
+    displayNone = "";
   let html = /*HTML*/ `
   <div class="topNavBarContainer">
   <img style="width: 100px; height: 100px;" src="source/img/alpakka.jpg">
   <input id="searchNavBar" class="searchNavBar" type="text">
-  <div><p class="hover">Handlekurv</p></div>
+  <div class="button-container">
+        <button onclick="model.app.page = 'shoppingCart'; updateView();" id="myButton" class="button">
+    Handlevogn
+    <span id="myAlertNumber" ${displayNone} class="alert-number">${model.input.shoppingCart.shoppingCartLines.length}</span>
+  </button>
+    </div>
   <div><p onclick="model.app.page = 'logIn'; updateView();" class="hover">${loginVar}</p></div>
   </div>
   `;

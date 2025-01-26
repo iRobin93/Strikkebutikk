@@ -38,6 +38,9 @@
   grid-template-columns: auto auto auto auto auto auto;
   margin-top: 5%;
 }
+.productSiteContainer3{
+  margin-top: 200px;
+}
 
 .productAlbumImg{
   height: 65px;
@@ -102,4 +105,41 @@ th {
 
 tr:nth-child(even) {
     background: antiquewhite;
+}
+
+
+/* Styling for the button */
+.button {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: aliceblue;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color:rgb(178, 187, 196);
+}
+
+/* Styling for the alert number */
+.alert-number {
+  
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
