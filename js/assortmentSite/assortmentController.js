@@ -6,20 +6,20 @@ function pushNewPattern() {
         newId = 0;
     else
         newId = Math.max(...model.data.pattern.map(patternObject => patternObject.id)) + 1;
-    model.data.pattern.push({ id: newId, name: model.input.assortment.pattern.name, path: "path" });
+    model.data.pattern.push({ id: newId, name: model.input.assortment.pattern.name , img: "path" });
     model.input.assortment.pattern.name = "";
-    let index = model.data.pattern.findIndex(checkDataId, newId)
-    postPatternToSQL(model.data.assortment[index]);
+    let index = model.data.pattern.findIndex(checkDataId, newId);
+    postPatternToSQL(model.data.pattern[index]);
     updateView();
 }
 
 function removePattern() {
 
     for (let i = 0; i < model.input.assortment.pattern.selected.length; i++) {
-        let index = model.data.pattern.findIndex(checkDataId, model.input.assortment.pattern.selected[i])
+        let index = model.data.pattern.findIndex(checkDataId, model.input.assortment.pattern.selected[i]);
         if (index >= 0) {
             deletePatternFromSQL(model.data.pattern[index].id);
-            model.data.pattern.splice(index, 1)
+            model.data.pattern.splice(index, 1);
         }
     }
 
@@ -69,7 +69,7 @@ function addAssortment() {
 
     model.input.assortment.yarn.colorIds = [];
     model.input.assortment.yarn.typeId = "";
-    postAssortmentToSQL(model.data.assortment[index])
+    postAssortmentToSQL(model.data.assortment[index]);
     updateView();
 }
 
