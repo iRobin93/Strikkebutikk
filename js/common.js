@@ -30,16 +30,9 @@ async function readFromSqlAndUpdateView() {
             if(response.data.length == 0)
                 {
                     console.log("Initaliserer data i databasen!")
-                    model.data.products.forEach(element => {
-
-                        element.productAlbumJSON = JSON.stringify(element.productAlbum);
-                        element.sizesJSON = JSON.stringify(element.sizes);
-                        delete element.id;
-                        delete element.productAlbum;
-                        delete element.sizes;
-
-                        postProductToSQL(element);
-                    });
+                    initializeProducts();
+                    initializePatterns();
+                    initializeAssortment();
                 }
            
         })
@@ -48,8 +41,21 @@ async function readFromSqlAndUpdateView() {
         });
 
 
-
+        await getAssortmentsFromSQL();
+        await getPatternsFromSQL();
+        await getProductsFromSQL();
     
+
+        updateView();
+}
+
+function findProductIndexById(productId){
+ return model.data.products.findIndex(productObject => productId == productObject.id);
+}
+
+
+async function getProductsFromSQL(){
+    const apiURL = 'https://localhost:7022/Product';
     await axios.get(apiURL)
         .then(response => {
             model.data.products = response.data;
@@ -66,12 +72,74 @@ async function readFromSqlAndUpdateView() {
         .catch(error => {
             console.error('Error!', error);
         });
-
-        updateView();
 }
 
-function findProductIndexById(productId){
- return model.data.products.findIndex(productObject => productId == productObject.id);
+async function getPatternsFromSQL() {
+    const apiURL = 'https://localhost:7022/Pattern';
+    await axios.get(apiURL)
+        .then(response => {
+            model.data.pattern = response.data;
+            console.log(model.data.pattern);
+        })
+        .catch(error => {
+            console.error('Error!', error);
+        });
+}
+
+async function getAssortmentsFromSQL(){
+    const apiURL = 'https://localhost:7022/Assortment';
+    await axios.get(apiURL)
+        .then(response => {
+            model.data.assortment = response.data;
+            console.log(model.data.assortment);
+        })
+        .catch(error => {
+            console.error('Error!', error);
+        });
+}
+
+
+function initializePatterns(){
+    model.data.pattern.forEach(element => {
+        postAssortmentToSQL(element);
+    })
+}
+
+function initializeAssortment(){
+    model.data.assortment.forEach(element => {
+        postAssortmentToSQL(element);
+    });
+}
+
+function initializeProducts(){
+    model.data.products.forEach(element => {
+
+        element.productAlbumJSON = JSON.stringify(element.productAlbum);
+        element.sizesJSON = JSON.stringify(element.sizes);
+        delete element.id;
+        delete element.productAlbum;
+        delete element.sizes;
+
+        postProductToSQL(element);
+    });
+}
+
+function postAssortmentToSQL(assortment){
+    const apiURL = 'https://localhost:7022/Assortment';
+    axios.post(apiURL, assortment)
+  
+      .catch(error => {
+        console.error('Error!', error);
+      });
+}
+
+function postPatternToSQL(pattern){
+    const apiURL = 'https://localhost:7022/Pattern';
+    axios.post(apiURL, pattern)
+  
+      .catch(error => {
+        console.error('Error!', error);
+      });
 }
 
 
@@ -83,4 +151,22 @@ function postProductToSQL(product) {
         console.error('Error!', error);
       });
   }
+
+
+  function deleteAssortmentFromSQL(id){
+    const apiURL = 'https://localhost:7022/Assortment';
+    axios.delete(apiURL, id)
+    .catch(error => {
+        console.error('Error', error);
+    });
+  }
+
+  function deletePatternFromSQL(id){
+    const apiURL = 'https://localhost:7022/Pattern';
+    axios.delete(apiURL, id)
+    .catch(error => {
+        console.error('Error', error);
+    });
+  }
+
 
