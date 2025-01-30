@@ -6,25 +6,35 @@ function pushNewPattern() {
         newId = 0;
     else
         newId = Math.max(...model.data.pattern.map(patternObject => patternObject.id)) + 1;
-    model.data.pattern.push({ id: newId, name: model.input.assortment.pattern.name , img: "path" });
+    model.data.pattern.push({ id: newId, name: model.input.assortment.pattern.name, img: "path" });
     model.input.assortment.pattern.name = "";
     let index = model.data.pattern.findIndex(checkDataId, newId);
-    postPatternToSQL(model.data.pattern[index]);
-    readFromSqlAndUpdateView();
+
+    if (useBackend) {
+        postPatternToSQL(model.data.pattern[index]);
+        readFromSqlAndUpdateView(false);
+    }
+
+    else
+        updateView();
 }
 
-function removePattern() {
+async function removePattern() {
 
     for (let i = 0; i < model.input.assortment.pattern.selected.length; i++) {
         let index = model.data.pattern.findIndex(checkDataId, model.input.assortment.pattern.selected[i]);
         if (index >= 0) {
-            deletePatternFromSQL(model.data.pattern[index].id);
+            if (useBackend)
+                await deletePatternFromSQL(model.data.pattern[index].id);
             model.data.pattern.splice(index, 1);
         }
     }
 
     model.input.assortment.pattern.selected = [];
-    readFromSqlAndUpdateView();
+    if (useBackend)
+        readFromSqlAndUpdateView(false);
+    else
+        updateView();
 
 }
 
@@ -32,21 +42,25 @@ function checkDataId(thisObject) {
     return thisObject.id == this
 }
 
-function removeAssortment() {
+async function removeAssortment() {
     for (let i = 0; i < model.input.assortment.yarn.selected.length; i++) {
 
 
         let index = model.data.assortment.findIndex(checkDataId, model.input.assortment.yarn.selected[i])
-        
+
         if (index >= 0) {
-            deleteAssortmentFromSQL(model.data.assortment[index].id);
+            if (useBackend)
+                await deleteAssortmentFromSQL(model.data.assortment[index].id);
             model.data.assortment.splice(index, 1)
         }
     }
 
     model.input.assortment.yarn.selected = [];
-    
-    readFromSqlAndUpdateView();
+
+    if (useBackend)
+        readFromSqlAndUpdateView(false);
+    else
+        updateView();
 }
 
 
@@ -69,7 +83,13 @@ function addAssortment() {
 
     model.input.assortment.yarn.colorIds = [];
     model.input.assortment.yarn.typeId = "";
-    postAssortmentToSQL(model.data.assortment[index]);
-    readFromSqlAndUpdateView();
+    
+    if (useBackend){
+        postAssortmentToSQL(model.data.assortment[index]);
+        readFromSqlAndUpdateView(false);
+    }
+        
+    else
+        updateView();
 }
 

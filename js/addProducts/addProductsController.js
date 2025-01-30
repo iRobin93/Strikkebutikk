@@ -50,7 +50,7 @@ function createProduct() {
       delete newProduct.sizes;
       delete newProduct.productAlbum;
       postProductToSQL(newProduct);
-      readFromSqlAndUpdateView();
+      readFromSqlAndUpdateView(false);
     }
    
     updateView();

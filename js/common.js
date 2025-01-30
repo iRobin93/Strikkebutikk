@@ -25,13 +25,13 @@ function findColorObjectById(colorId) {
     return model.data.colorAlt.find(colorObject => colorId == colorObject.id)
 }
 
-async function readFromSqlAndUpdateView() {
+async function readFromSqlAndUpdateView(firstTime) {
     console.log(model.data.products);
     const apiURL = 'https://localhost:7022/Product';
 
-    const response = await axios.get(apiURL)
+    
     try {
-
+        const response = await axios.get(apiURL)
         if (response.data.length == 0) {
             console.log("Initaliserer data i databasen!")        
             await initializePatterns();
@@ -41,9 +41,16 @@ async function readFromSqlAndUpdateView() {
 
     }
     catch (error) {
-        console.error('Error!', error);
-    };
+        if (firstTime){           
+            useBackend = false;
+            updateView();
+            return;
+        }
+        else
+            console.error('Error!', error);
 
+    };
+    
 
     await getAssortmentsFromSQL();
     await getPatternsFromSQL();
@@ -63,14 +70,6 @@ async function getProductsFromSQL() {
     await axios.get(apiURL)
         .then(response => {
             model.data.products = response.data;
-            for (i = 0; i < model.data.products.length; i++) {
-
-                model.data.products[i].productAlbum = JSON.parse(model.data.products[i].productAlbumJSON);
-                model.data.products[i].sizes = JSON.parse(model.data.products[i].sizesJSON);
-                delete model.data.products[i].productAlbumJSON
-                delete model.data.products[i].sizesJSON
-            }
-
             console.log(model.data.products);
         })
         .catch(error => {
@@ -117,13 +116,7 @@ async function initializeAssortment() {
 
 async function initializeProducts() {
     for (const element of model.data.products) {
-
-        element.productAlbumJSON = JSON.stringify(element.productAlbum);
-        element.sizesJSON = JSON.stringify(element.sizes);
         delete element.id;
-        delete element.productAlbum;
-        delete element.sizes;
-
         await postProductToSQL(element);
     };
 }
@@ -157,20 +150,21 @@ async function postProductToSQL(product) {
 }
 
 
-function deleteAssortmentFromSQL(id) {
-    const apiURL = `https://localhost:7022/Assortment/id=${id}`;
-    axios.delete(apiURL)
+async function deleteAssortmentFromSQL(id) {
+    const apiURL = `https://localhost:7022/Assortment?id=${id}`;
+    await axios.delete(apiURL)
         .catch(error => {
             console.error('Error', error);
+            
         });
-
 }
 
-function deletePatternFromSQL(id) {
+async function deletePatternFromSQL(id) {
     const apiURL = `https://localhost:7022/Pattern?id=${id}`;
-    axios.delete(apiURL)
+    await axios.delete(apiURL)
         .catch(error => {
             console.error('Error', error);
+            alert("Feil ved sletting: " + error.response.data.message)
         });
 }
 

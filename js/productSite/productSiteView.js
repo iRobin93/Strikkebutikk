@@ -1,5 +1,5 @@
 function updateViewProduct() {
-    if (model.input.productSite.id == "")
+    if (model.input.productSite.id === "")
         return;
     let index = model.data.products.findIndex(productObject => productObject.id == model.input.productSite.id)
     let productObject = model.data.products[index];
