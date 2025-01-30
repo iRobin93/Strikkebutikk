@@ -5,12 +5,16 @@ function getYarnType(assortmentId) {
 
 
 function getPatternName(patternId) {
-    return model.data.pattern[patternId].name;
+    return model.data.pattern[getPatternIndexById(patternId)].name;
+}
+
+function getPatternIndexById(patternId){
+    return model.data.pattern.findIndex(patternObject => patternId == patternObject.id);
 }
 
 function getColorAlt(colorId) {
-    let colorObject = model.data.colorAlt.find(x => x.id == colorId)
-    return colorObject.color
+    let colorObject = model.data.colorAlt.find(x => x.id == colorId);
+    return colorObject.color;
 }
 
 function findAssortmentObjectById(assortmentId) {
@@ -29,10 +33,10 @@ async function readFromSqlAndUpdateView() {
     try {
 
         if (response.data.length == 0) {
-            console.log("Initaliserer data i databasen!")
-            await initializeProducts();
+            console.log("Initaliserer data i databasen!")        
             await initializePatterns();
             await initializeAssortment();
+            await initializeProducts();
         }
 
     }
@@ -159,6 +163,7 @@ function deleteAssortmentFromSQL(id) {
         .catch(error => {
             console.error('Error', error);
         });
+
 }
 
 function deletePatternFromSQL(id) {

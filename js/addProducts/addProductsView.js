@@ -127,7 +127,7 @@ function drawPatternOptions() {
   for (i = 0; i < model.data.pattern.length; i++) {
     if (model.input.createProduct.patternId === model.data.pattern[i].id)
       selected = true;
-    html += `<option  value="${model.data.pattern[i].id}" ${selected ? "selected" : ""}>${getPatternName(i)}</option>`;
+    html += `<option  value="${model.data.pattern[i].id}" ${selected ? "selected" : ""}>${getPatternName(model.data.pattern[i].id)}</option>`;
     selected = false;
   }
 

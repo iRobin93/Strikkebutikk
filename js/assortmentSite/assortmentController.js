@@ -10,7 +10,7 @@ function pushNewPattern() {
     model.input.assortment.pattern.name = "";
     let index = model.data.pattern.findIndex(checkDataId, newId);
     postPatternToSQL(model.data.pattern[index]);
-    updateView();
+    readFromSqlAndUpdateView();
 }
 
 function removePattern() {
@@ -24,7 +24,7 @@ function removePattern() {
     }
 
     model.input.assortment.pattern.selected = [];
-    updateView();
+    readFromSqlAndUpdateView();
 
 }
 
@@ -46,7 +46,7 @@ function removeAssortment() {
 
     model.input.assortment.yarn.selected = [];
     
-    updateView();
+    readFromSqlAndUpdateView();
 }
 
 
@@ -70,6 +70,6 @@ function addAssortment() {
     model.input.assortment.yarn.colorIds = [];
     model.input.assortment.yarn.typeId = "";
     postAssortmentToSQL(model.data.assortment[index]);
-    updateView();
+    readFromSqlAndUpdateView();
 }
 

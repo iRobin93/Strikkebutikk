@@ -26,7 +26,7 @@ const model = {
       imgByteStream: "",
     },
     productSite: {
-      id: 1,
+      id: "",
       colorId: "",
       size: "",
       chosenCount: 0,
