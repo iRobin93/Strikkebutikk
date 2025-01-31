@@ -27,6 +27,7 @@ function updateViewOverview()
 
 function createHtmlRowOverview(i)
 {
+
     let product = model.data.products[i];
     return /*HTML*/ `
                         <tr style="cursor: pointer;" onclick="model.input.productSite.id = ${product.id}; model.input.productSite.colorId=''; model.app.page = 'productSite'; updateView(); ">
@@ -36,6 +37,10 @@ function createHtmlRowOverview(i)
                             <td>${getPatternName(product.patternId)}</td>
                             <td>${getYarnType(product.assortmentId)}</td>
                             <td>${product.quantity}</td>
+                            ${model.app.isAdmin ? 
+                                `<td onclick="event.stopPropagation();" style ="cursor: default;"><button onclick="deleteProduct(${product.id}); event.stopPropagation();">Slett</button></td>` 
+                                : 
+                                ''}
                         </tr>
     
     

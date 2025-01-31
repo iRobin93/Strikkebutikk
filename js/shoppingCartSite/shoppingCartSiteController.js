@@ -17,3 +17,8 @@ function buyShoppingCart(){
     alert("Kjøpet er gjennomført, pengene er trukket fra din konto!")
     updateView();
 }
+
+function removeFromCart(shoppingCartLinesIndex){
+    model.input.shoppingCart.shoppingCartLines.splice(shoppingCartLinesIndex, 1)
+    updateView();
+}

@@ -51,6 +51,9 @@ function createHtmlRowShoppingCart(shoppingCartLinesIndex)
                             <td>${model.input.shoppingCart.shoppingCartLines[shoppingCartLinesIndex].quantity}</td>
                             <td>${product.price}</td>
                             <td>${product.price * model.input.shoppingCart.shoppingCartLines[shoppingCartLinesIndex].quantity}</td>
+                            <td style="cursor: default;" onclick="event.stopPropagation();">
+                              <button style="cursor: pointer;" onclick="removeFromCart(${shoppingCartLinesIndex}); event.stopPropagation();">Delete</button>
+                            </td>
                         </tr>
     `;
 }

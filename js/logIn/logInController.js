@@ -7,8 +7,8 @@ function logIn() {
   if (usernameInput === username && passwordInput === password) {
     model.app.isAdmin = true;
     model.app.page = "addProducts";
-    usernameInput = "";
-    passwordInput = "";
+    model.input.logIn.username = "";
+    model.input.logIn.password = "";
     updateView();
   } else {
     alert("Brukernavn og passord matcher ikke!");

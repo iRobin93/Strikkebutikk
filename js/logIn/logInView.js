@@ -10,6 +10,7 @@ function updateViewLogIn() {
       onchange="model.input.logIn.username = this.value"
       type="text"
       id="logInInput"
+      value="${model.input.logIn.username}"
       placeholder="Brukernavn"
     />
   </div>
@@ -21,6 +22,7 @@ function updateViewLogIn() {
       onchange="model.input.logIn.password = this.value"
       type="password"
       id="logInPassword"
+      value="${model.input.logIn.password}"
       placeholder="Passord"
     />
   </div>

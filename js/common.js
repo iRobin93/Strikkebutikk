@@ -17,6 +17,10 @@ function getColorAlt(colorId) {
     return colorObject.color;
 }
 
+function getProductIndexById(productId){
+    return model.data.products.findIndex(x => productId == x.id)
+}
+
 function findAssortmentObjectById(assortmentId) {
     return model.data.assortment.find(assortmentObject1 => assortmentId == assortmentObject1.id)
 }
@@ -165,6 +169,14 @@ async function deletePatternFromSQL(id) {
         .catch(error => {
             console.error('Error', error);
             alert("Feil ved sletting: " + error.response.data.message)
+        });
+}
+
+async function deleteProductFromSQL(id) {
+    const apiURL = `https://localhost:7022/Product?id=${id}`;
+    await axios.delete(apiURL)
+        .catch(error => {
+            console.error('Error', error);
         });
 }
 
