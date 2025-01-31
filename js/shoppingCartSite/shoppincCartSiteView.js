@@ -52,7 +52,7 @@ function createHtmlRowShoppingCart(shoppingCartLinesIndex)
                             <td>${product.price}</td>
                             <td>${product.price * model.input.shoppingCart.shoppingCartLines[shoppingCartLinesIndex].quantity}</td>
                             <td style="cursor: default;" onclick="event.stopPropagation();">
-                              <button style="cursor: pointer;" onclick="removeFromCart(${shoppingCartLinesIndex}); event.stopPropagation();">Delete</button>
+                              <button style="cursor: pointer;" onclick="removeFromCart(${shoppingCartLinesIndex}); event.stopPropagation();">Slett</button>
                             </td>
                         </tr>
     `;
