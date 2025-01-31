@@ -155,8 +155,8 @@ function drawProductSiteContainer3(productObject) {
 function getAvailableColors(productObject) {
 
     let html = "";
-    let assortmentObject = findAssortmentObjectById(productObject.assortmentId);
-    assortmentObject.colorIds.forEach((colorId) => {
+    
+    productObject.colorAltIds.forEach((colorId) => {
         let colorObject = findColorObjectById(colorId);
         html += /*HTML*/ `
         <option ${model.input.productSite.colorId === colorId ? "selected" : ""} value="${colorObject.id}">${colorObject.color}</option>

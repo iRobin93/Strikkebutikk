@@ -50,6 +50,12 @@ function drawInput() {
     <label for="pYarn">Garntype:</label>
     ${drawYarnOptionsProductView()}
   </div>  
+
+  <div>
+  <label for="pColor">Farge:</label>
+  ${drawColorAltProductView()}
+   
+</div>    
   
   <div class="form-group">
     <label for="pSize">Størrelse:</label>
@@ -175,8 +181,8 @@ function drawColorAltProductView() {
   let assortmentObject = model.data.assortment.find(x => x.id == model.input.createProduct.yarnTypes)
 
   for (let i = 0; i < assortmentObject.colorIds.length; i++) {
-    for(let j = 0; j < model.input.createProduct.colorAlt.length; j++)
-    if (model.input.createProduct.colorAlt[j] === assortmentObject.colorIds[i]){
+    for(let j = 0; j < model.input.createProduct.colorAltIds.length; j++)
+    if (model.input.createProduct.colorAltIds[j] === assortmentObject.colorIds[i]){
       selected = true;
     }
       
@@ -192,10 +198,10 @@ function drawColorAltProductView() {
 }
 
 function changedColorAltProductViewInput(element) {
-  model.input.createProduct.colorAlt = [];
+  model.input.createProduct.colorAltIds = [];
   for (let i = 0; i < element.options.length; i++) {
     if (element.options[i].selected == true)
-      model.input.createProduct.colorAlt.push(Number(element.options[i].value))
+      model.input.createProduct.colorAltIds.push(Number(element.options[i].value))
   }
 }
 

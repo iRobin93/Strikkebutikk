@@ -31,6 +31,7 @@ function createProduct() {
           "source/img/seven-sisters3.png",],
       productName: createProduct.productName,
       price: createProduct.productPrice,
+      colorAltIds: [],
       assortmentId: createProduct.yarnTypes,
       sizes: [createProduct.size],
       category: createProduct.category,
@@ -39,6 +40,10 @@ function createProduct() {
       patternId: createProduct.patternId,
       productImg: createProduct.imgByteStream,
     };
+
+
+    for(let i = 0; i < model.input.createProduct.colorAltIds.length; i++)
+      newProduct.colorAltIds.push(Number(model.input.createProduct.colorAltIds[i]))
 
     resetInputProductFields();
     model.data.products.push(newProduct);

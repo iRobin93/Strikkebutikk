@@ -18,6 +18,7 @@ const model = {
       productPrice: 0,
       yarnTypes: "",
       category: "",
+      colorAltIds: [],
       quantity: 0,
       productInfo: "",
       patternId: "",
@@ -184,6 +185,7 @@ const model = {
         category: "genser",
         patternId: 0,
         quantity: 2,
+        colorAltIds: [2, 3],
         price: 799,
         assortmentId: 0,
         productInfo:
@@ -202,6 +204,7 @@ const model = {
         category: "genser",
         patternId: 0,
         quantity: 1,
+        colorAltIds: [2, 5],
         price: 799,
         assortmentId: 1,
         productInfo:
@@ -220,6 +223,7 @@ const model = {
         category: "genser",
         patternId: 2,
         quantity: 3,
+        colorAltIds: [5, 3],
         price: 799,
         assortmentId: 1,
         productInfo:
@@ -238,6 +242,7 @@ const model = {
         category: "skjerf",
         patternId: 1,
         quantity: 4,
+        colorAltIds: [2, 3],
         price: 599,
         assortmentId: 1,
         productInfo:
@@ -256,6 +261,7 @@ const model = {
         category: "skjerf",
         patternId: 0,
         quantity: 4,
+        colorAltIds: [2, 3],
         price: 399,
         assortmentId: 1,
         productInfo:
@@ -274,6 +280,7 @@ const model = {
         category: "skjerf",
         patternId: 0,
         quantity: 3,
+        colorAltIds: [2, 3],
         price: 799,
         assortmentId: 1,
         productInfo:
@@ -292,6 +299,7 @@ const model = {
         category: "sokker",
         patternId: 0,
         quantity: 7,
+        colorAltIds: [2, 3],
         price: 799,
         assortmentId: 1,
         productInfo:
@@ -310,6 +318,7 @@ const model = {
         category: "sokker",
         patternId: 0,
         quantity: 9,
+        colorAltIds: [2, 3],
         price: 799,
         assortmentId: 1,
         productInfo: "Strømpene er strikket med ribb på både skaft og vrist.",
@@ -327,6 +336,7 @@ const model = {
         category: "votter",
         patternId: 0,
         quantity: 5,
+        colorAltIds: [2, 3],
         price: 799,
         assortmentId: 1,
         productInfo:
@@ -345,6 +355,7 @@ const model = {
         category: "votter",
         patternId: 0,
         quantity: 3,
+        colorAltIds: [2, 3],
         price: 799,
         assortmentId: 1,
         productInfo:
@@ -363,6 +374,7 @@ const model = {
         category: "votter",
         patternId: 0,
         quantity: 2,
+        colorAltIds: [2, 3],
         price: 799,
         assortmentId: 1,
         productInfo:
