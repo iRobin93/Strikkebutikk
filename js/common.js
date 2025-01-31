@@ -56,8 +56,8 @@ async function readFromSqlAndUpdateView(firstTime) {
     };
 
 
-    await getAssortmentsFromSQL();
     await getPatternsFromSQL();
+    await getAssortmentsFromSQL();
     await getProductsFromSQL();
 
 
@@ -74,6 +74,9 @@ async function getProductsFromSQL() {
     await axios.get(apiURL)
         .then(response => {
             model.data.products = response.data;
+            // model.data.products.forEach(element => {
+            //     element.productImg = new Blob([element.productImg], {type: 'text/plain'});
+            // });
             console.log(model.data.products);
         })
         .catch(error => {
@@ -120,12 +123,41 @@ async function initializeAssortment() {
 
 async function initializeProducts() {
     for (const element of model.data.products) {
-        // const byteArray = element.productImg.arrayBuffer();
-        // model.input.createProduct.imgName = fileInput.files[0].name;
-        // model.input.createProduct.imgByteStream = byteArray
-        // element.productImg = showImage(byteArray);
-        delete element.id;
-        await postProductToSQL(element);
+        try {
+            const imagePath = element.productImg;
+
+            // Wait for the image to be fetched and converted to a blob
+            const response = await fetch(imagePath);
+            const blob = await response.blob();
+
+            const formData = new FormData();
+
+            // Append the blob with the filename
+            formData.append('productImg', blob);
+
+            delete element.id;
+            element.productImg = null;
+            // Append other fields, excluding 'productImg'
+            // for (const key in element) {
+            //     if (key !== 'productImg' /*&& key !== 'productAlbum'*/) {
+            //         formData.append(key, element[key]);
+            //     }
+            // }
+
+            // Append other fields
+            formData.append('product', JSON.stringify(element));
+            // for (const [key, value] of formData.entries()) {
+            //     console.log(key, value);
+            // }
+
+            for (const [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
+            await postProductToSQL(formData);
+        }
+
+        catch (error) { console.error('Error processing product:', error); }
+
     };
 }
 
@@ -148,12 +180,15 @@ async function postPatternToSQL(pattern) {
 }
 
 
-async function postProductToSQL(product) {
+async function postProductToSQL(formData) {
     const apiURL = 'https://localhost:7022/Product';
-    await axios.post(apiURL, product)
-
+    await axios.post(apiURL, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
         .catch(error => {
-            console.error('Error!', error);
+            console.error('Error creating product:', error);
         });
 }
 

@@ -22,10 +22,12 @@ function updateViewProduct() {
 
 function showProductImage(index) {
     let productObject = model.data.products[index];
-    if (typeof productObject.productImg === 'string' || productObject.productImg instanceof String)
-        return productObject.productImg;
-    else
-        return showImage(productObject.productImg);
+    if (!useBackend)
+        if (typeof productObject.productImg === 'string' || productObject.productImg instanceof String)
+            return productObject.productImg;
+        else
+            return showImage(productObject.productImg);
+    return showImage(productObject.productImg);
 }
 
 
@@ -155,7 +157,7 @@ function drawProductSiteContainer3(productObject) {
 function getAvailableColors(productObject) {
 
     let html = "";
-    
+
     productObject.colorAltIds.forEach((colorId) => {
         let colorObject = findColorObjectById(colorId);
         html += /*HTML*/ `

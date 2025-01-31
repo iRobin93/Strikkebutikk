@@ -6,7 +6,7 @@ function updateViewAdd() {
             <input id="fileField" type="file" onchange="readFile(this)"style="display:none;"/>
             <label class="button" for="fileField">Velg fil for bilde!</label>
             <div>&nbsp;</div>
-            <img ${imgText} src="${showImage(model.input.createProduct.imgByteStream)}" alt="" id="productImage" />
+            <img ${imgText} src="${showImage(model.input.createProduct.imgByteStream, true)}" alt="" id="productImage" />
           </div>
           <div class="input-container">
             ${drawInput()}
@@ -96,19 +96,21 @@ function drawInput() {
 
 
 async function readFile(fileInput) {
+
   const byteArray = await fileInput.files[0].arrayBuffer();
   model.input.createProduct.imgName = fileInput.files[0].name;
   model.input.createProduct.imgByteStream = byteArray
-  let imageUrl = showImage(byteArray);
+  let imageUrl = showImage(byteArray, true);
+  document.getElementById("productImage").src = imageUrl;
   document.getElementById("productImage").src = imageUrl;
   document.getElementById("productImage").hidden = false;
 }
 
-function showImage(imageBytes) {
+function showImage(imageBytes, notUseBackendMethod) {
   if (imageBytes == "")
     return "";
-
-
+  if(useBackend && !notUseBackendMethod)
+      return  `data:image/jpeg;base64,${imageBytes}`;
 
   const blob = new Blob([imageBytes], {
     type: "image/jpeg",
