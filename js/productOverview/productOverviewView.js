@@ -38,7 +38,7 @@ function createHtmlRowOverview(i)
                             <td>${getYarnType(product.assortmentId)}</td>
                             <td>${product.quantity}</td>
                             ${model.app.isAdmin ? 
-                                `<td onclick="event.stopPropagation();" style ="cursor: default;"><button onclick="deleteProduct(${product.id}); event.stopPropagation();">Slett</button></td>` 
+                                `<td onclick="event.stopPropagation();" style ="cursor: default;"><button style="cursor: pointer;" onclick="deleteProduct(${product.id}); event.stopPropagation();">Slett</button></td>` 
                                 : 
                                 ''}
                         </tr>

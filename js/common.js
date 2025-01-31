@@ -8,7 +8,7 @@ function getPatternName(patternId) {
     return model.data.pattern[getPatternIndexById(patternId)].name;
 }
 
-function getPatternIndexById(patternId){
+function getPatternIndexById(patternId) {
     return model.data.pattern.findIndex(patternObject => patternId == patternObject.id);
 }
 
@@ -17,7 +17,7 @@ function getColorAlt(colorId) {
     return colorObject.color;
 }
 
-function getProductIndexById(productId){
+function getProductIndexById(productId) {
     return model.data.products.findIndex(x => productId == x.id)
 }
 
@@ -33,11 +33,11 @@ async function readFromSqlAndUpdateView(firstTime) {
     console.log(model.data.products);
     const apiURL = 'https://localhost:7022/Product';
 
-    
+
     try {
         const response = await axios.get(apiURL)
         if (response.data.length == 0) {
-            console.log("Initaliserer data i databasen!")        
+            console.log("Initaliserer data i databasen!")
             await initializePatterns();
             await initializeAssortment();
             await initializeProducts();
@@ -45,7 +45,7 @@ async function readFromSqlAndUpdateView(firstTime) {
 
     }
     catch (error) {
-        if (firstTime){           
+        if (firstTime) {
             useBackend = false;
             updateView();
             return;
@@ -54,7 +54,7 @@ async function readFromSqlAndUpdateView(firstTime) {
             console.error('Error!', error);
 
     };
-    
+
 
     await getAssortmentsFromSQL();
     await getPatternsFromSQL();
@@ -120,6 +120,10 @@ async function initializeAssortment() {
 
 async function initializeProducts() {
     for (const element of model.data.products) {
+        // const byteArray = element.productImg.arrayBuffer();
+        // model.input.createProduct.imgName = fileInput.files[0].name;
+        // model.input.createProduct.imgByteStream = byteArray
+        // element.productImg = showImage(byteArray);
         delete element.id;
         await postProductToSQL(element);
     };
@@ -159,7 +163,7 @@ async function deleteAssortmentFromSQL(id) {
     await axios.delete(apiURL)
         .catch(error => {
             console.error('Error', error);
-            
+
         });
 }
 

@@ -48,12 +48,7 @@ function createProduct() {
     resetInputProductFields();
     model.data.products.push(newProduct);
     if (useBackend) {
-      newProduct.productImg = "source/img/seven-sister-genser.png"
-      newProduct.sizesJSON = JSON.stringify(newProduct.sizes);
-      newProduct.productAlbumJSON = JSON.stringify(model.data.products[0].productAlbum);
       delete newProduct.id;
-      delete newProduct.sizes;
-      delete newProduct.productAlbum;
       postProductToSQL(newProduct);
       readFromSqlAndUpdateView(false);
     }
