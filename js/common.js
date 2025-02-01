@@ -254,3 +254,19 @@ async function deleteProductFromSQL(id) {
             console.error('Error', error);
         });
 }
+
+async function deleteCommentFromSQL(id) {
+    const apiURL = `https://localhost:7022/Comment?id=${id}`;
+    await axios.delete(apiURL)
+        .catch(error => {
+            console.error('Error', error);
+        });
+}
+
+async function putCommentInSQL(id){
+    const apiURL = `https://localhost:7022/Comment?id=${id}`;
+    await axios.put(apiURL)
+        .catch(error => {
+            console.error('Error', error);
+        });
+}
