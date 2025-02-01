@@ -21,6 +21,11 @@ function getProductIndexById(productId) {
     return model.data.products.findIndex(x => productId == x.id)
 }
 
+
+function findProductIndexById(productId) {
+    return model.data.products.findIndex(productObject => productId == productObject.id);
+}
+
 function findAssortmentObjectById(assortmentId) {
     return model.data.assortment.find(assortmentObject1 => assortmentId == assortmentObject1.id)
 }
@@ -59,14 +64,12 @@ async function readFromSqlAndUpdateView(firstTime) {
     await getPatternsFromSQL();
     await getAssortmentsFromSQL();
     await getProductsFromSQL();
+    await getCommentsFromSQL();
 
 
     updateView();
 }
 
-function findProductIndexById(productId) {
-    return model.data.products.findIndex(productObject => productId == productObject.id);
-}
 
 
 async function getProductsFromSQL() {
@@ -102,6 +105,18 @@ async function getAssortmentsFromSQL() {
         .then(response => {
             model.data.assortment = response.data;
             console.log(model.data.assortment);
+        })
+        .catch(error => {
+            console.error('Error!', error);
+        });
+}
+
+async function getCommentsFromSQL() {
+    const apiURL = 'https://localhost:7022/Comment';
+    await axios.get(apiURL)
+        .then(response => {
+            model.data.comments = response.data;
+            console.log(model.data.comments);
         })
         .catch(error => {
             console.error('Error!', error);
@@ -189,6 +204,16 @@ async function postProductToSQL(formData) {
     })
         .catch(error => {
             console.error('Error creating product:', error);
+        });
+}
+
+async function postCommentToSQL(commentObject){
+    
+    const apiURL = 'https://localhost:7022/Comment';
+    await axios.post(apiURL, commentObject)
+
+        .catch(error => {
+            console.error('Error!', error);
         });
 }
 

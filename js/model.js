@@ -31,7 +31,8 @@ const model = {
       colorId: "",
       size: "",
       chosenCount: 0,
-      
+      comment: "",
+      email: "",
 
 
     },
@@ -82,6 +83,21 @@ const model = {
       username: "Rebecka",
       password: "1234",
     },
+    comments:[
+      {
+        id: 0,
+        comment: "Vil gjerne ha denne i gul",
+        email: "test@email.no",
+        productId: 0,
+      },
+      {
+        id: 1,
+        comment: "Vil gjerne ha denne i blå",
+        email: "test@email.no",
+        productId: 1,
+      },
+
+    ],
 
     assortment: [
       {

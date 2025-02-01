@@ -47,6 +47,7 @@ function showAdminNavBar() {
   let html = /*HTML*/ `
   <div class="bottomNavBarContainer">
   <div><p onclick="model.app.page = 'sortiment'; updateView();" class="hover">Sortiment</p></div>
+  <div><p onclick="model.app.page = 'comments'; updateView();" class="hover">Kommentarer</p></div>
   <div><p onclick="model.app.page = 'addProducts'; updateView();" class="hover">Legg til Produkt</p></div>
   </div>
     `;

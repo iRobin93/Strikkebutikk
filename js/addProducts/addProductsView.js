@@ -102,7 +102,6 @@ async function readFile(fileInput) {
   model.input.createProduct.imgByteStream = byteArray
   let imageUrl = showImage(byteArray, true);
   document.getElementById("productImage").src = imageUrl;
-  document.getElementById("productImage").src = imageUrl;
   document.getElementById("productImage").hidden = false;
 }
 

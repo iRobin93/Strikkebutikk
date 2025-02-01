@@ -27,8 +27,8 @@ async function createProduct() {
     let newProduct = {
       id: getNewProductId(),
       productAlbum: ["source/img/seven-sisters1.png",
-          "source/img/seven-sisters2.png",
-          "source/img/seven-sisters3.png",],
+        "source/img/seven-sisters2.png",
+        "source/img/seven-sisters3.png",],
       productName: createProduct.productName,
       price: createProduct.productPrice,
       colorAltIds: [],
@@ -42,7 +42,7 @@ async function createProduct() {
     };
 
 
-    for(let i = 0; i < model.input.createProduct.colorAltIds.length; i++)
+    for (let i = 0; i < model.input.createProduct.colorAltIds.length; i++)
       newProduct.colorAltIds.push(Number(model.input.createProduct.colorAltIds[i]))
 
     resetInputProductFields();
@@ -54,7 +54,7 @@ async function createProduct() {
           type: "image/jpeg",
         });
 
-//        const blob = newProduct.productImg;
+        //        const blob = newProduct.productImg;
 
         const formData = new FormData();
 
@@ -72,16 +72,16 @@ async function createProduct() {
 
         // Append other fields
         formData.append('product', JSON.stringify(newProduct));
-         for (const [key, value] of formData.entries()) {
-             console.log(key, value);
-         }
+        for (const [key, value] of formData.entries()) {
+          console.log(key, value);
+        }
         await postProductToSQL(formData);
-      }catch(error){console.log('Error: ', error)}
-      
+      } catch (error) { console.log('Error: ', error) }
+
       readFromSqlAndUpdateView(false);
     }
-   
-    updateView();
+    else
+      updateView();
   }
 }
 
