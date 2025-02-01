@@ -20,9 +20,9 @@ function updateViewCommentSection(){
         html += /*HTML*/ `
             <tr>
             <!-- Comments will be injected here -->
-            <td>${comment.comment}</td>
-            <td>${comment.email}</td>
-            <td>${model.data.products[getProductIndexById(comment.productId)].productName}</td>
+                <td>${comment.comment}</td>
+                <td>${comment.email}</td>
+                <td>${model.data.products[getProductIndexById(comment.productId)].productName}</td>
             </tr>
         `;
     })

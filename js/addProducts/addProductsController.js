@@ -50,33 +50,11 @@ async function createProduct() {
     if (useBackend) {
 
       try {
-        const blob = new Blob([newProduct.productImg], {
-          type: "image/jpeg",
-        });
-
-        //        const blob = newProduct.productImg;
-
-        const formData = new FormData();
-
-        // Append the blob with the filename
-        formData.append('productImg', blob);
-
-        delete newProduct.id;
-        newProduct.productImg = null;
-        // Append other fields, excluding 'productImg'
-        // for (const key in element) {
-        //     if (key !== 'productImg' /*&& key !== 'productAlbum'*/) {
-        //         formData.append(key, element[key]);
-        //     }
-        // }
-
-        // Append other fields
-        formData.append('product', JSON.stringify(newProduct));
-        for (const [key, value] of formData.entries()) {
-          console.log(key, value);
-        }
-        await postProductToSQL(formData);
-      } catch (error) { console.log('Error: ', error) }
+        delete newProdpostProductToSQLuct.id;
+        await (newProduct);
+      } 
+      catch (error) 
+      { console.log('Error: ', error) }
 
       readFromSqlAndUpdateView(false);
     }

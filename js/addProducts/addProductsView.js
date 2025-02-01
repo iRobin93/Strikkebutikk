@@ -6,7 +6,7 @@ function updateViewAdd() {
             <input id="fileField" type="file" onchange="readFile(this)"style="display:none;"/>
             <label class="button" for="fileField">Velg fil for bilde!</label>
             <div>&nbsp;</div>
-            <img ${imgText} src="${showImage(model.input.createProduct.imgByteStream, true)}" alt="" id="productImage" />
+            <img ${imgText} src="${showImage(model.input.createProduct.imgByteStream)}" alt="" id="productImage" />
           </div>
           <div class="input-container">
             ${drawInput()}
@@ -92,33 +92,21 @@ function drawInput() {
 
 
 
-
-
-
 async function readFile(fileInput) {
 
   const byteArray = await fileInput.files[0].arrayBuffer();
+  const uint8Array = new Uint8Array(byteArray);
+
   model.input.createProduct.imgName = fileInput.files[0].name;
-  model.input.createProduct.imgByteStream = byteArray
-  let imageUrl = showImage(byteArray, true);
+  model.input.createProduct.imgByteStream = arrayBufferToBase64(uint8Array);
+  let imageUrl = showImage(model.input.createProduct.imgByteStream);
+
   document.getElementById("productImage").src = imageUrl;
   document.getElementById("productImage").hidden = false;
 }
 
-function showImage(imageBytes, notUseBackendMethod) {
-  if (imageBytes == "")
-    return "";
-  if(useBackend && !notUseBackendMethod)
-      return  `data:image/jpeg;base64,${imageBytes}`;
 
-  const blob = new Blob([imageBytes], {
-    type: "image/jpeg",
-  });
-  const urlCreator = window.URL || window.webkitURL;
-  const imageUrl = urlCreator.createObjectURL(blob);
 
-  return imageUrl;
-}
 
 
 function drawPatternOptions() {

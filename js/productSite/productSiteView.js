@@ -22,11 +22,6 @@ function updateViewProduct() {
 
 function showProductImage(index) {
     let productObject = model.data.products[index];
-    if (!useBackend)
-        if (typeof productObject.productImg === 'string' || productObject.productImg instanceof String)
-            return productObject.productImg;
-        else
-            return showImage(productObject.productImg);
     return showImage(productObject.productImg);
 }
 
@@ -153,7 +148,7 @@ function drawProductSiteContainer2(productObject) {
                             value="${model.input.productSite.email}" 
                             placeholder="Skriv din e-post..." 
                             style="position: relative; z-index: 999; margin-top: 10px; width: 100%;" />
-                        <button style="margin-top: 10px;"class="button" onclick="submitText()">Send kommentar</button>
+                        <button style="margin-top: 10px;"class="button" onclick="submitComment()">Send kommentar</button>
                     </div>
                 </div>
             </div>
@@ -174,41 +169,17 @@ function focusTextField() {
 function toggleTextBox() {
     const textBox = document.getElementById('textBox');
     const isVisible = textBox.style.display === 'block';
-    
+
     // Toggle visibility
     textBox.style.display = isVisible ? 'none' : 'block';
-    
+
     // If the text box is now visible, focus on the textarea
     if (!isVisible) {
         document.getElementById('userText').focus();
     }
 }
 
-async function submitText() {
-    const userText = model.input.productSite.comment;
-    const userEmail = model.input.productSite.email;
-    let commentObject = {comment: model.input.productSite.comment, email: model.input.productSite.email, productId: model.input.productSite.id};
-    if (userText && userEmail) {
-        if(useBackend){
-            await postCommentToSQL(commentObject);
-           
-        }
-            
-        else {
-            commentObject.id = getNewCommentId();
-            
-        }
-        model.data.comments.push(commentObject);
-            
-        alert("Kommentar: " + userText + "\nE-post: " + userEmail); // Here, you can replace this with actual form submission logic
-        model.input.productSite.comment = "";
-        model.input.productSite.email = "";
 
-    } else {
-        alert("Vennligst skriv både kommentar og e-post før du sender.");
-    }
-    updateView();
-}
 
 
 

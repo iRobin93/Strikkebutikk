@@ -52,6 +52,7 @@ async function readFromSqlAndUpdateView(firstTime) {
     catch (error) {
         if (firstTime) {
             useBackend = false;
+            moveImgFilesToProperties();
             updateView();
             return;
         }
@@ -71,6 +72,28 @@ async function readFromSqlAndUpdateView(firstTime) {
 }
 
 
+
+  function showImage(imageBytes) {
+    if (imageBytes == "")
+      return "";
+    else
+      return  `data:image/jpeg;base64,${imageBytes}`;
+  }
+
+
+  async function moveImgFilesToProperties() {
+    for (const element of model.data.products) {
+        try {
+            const response = await fetch(element.productImg); // Assuming `imagePath` is part of the `element`
+            const uint8Array = new Uint8Array(await response.arrayBuffer());
+
+            // Convert arrayBuffer to Base64
+            element.productImg = arrayBufferToBase64(uint8Array);
+        } catch (error) {
+            console.error('Error fetching or converting image:', error);
+        }
+    }
+}
 
 async function getProductsFromSQL() {
     const apiURL = 'https://localhost:7022/Product';
@@ -143,38 +166,30 @@ async function initializeProducts() {
 
             // Wait for the image to be fetched and converted to a blob
             const response = await fetch(imagePath);
-            const blob = await response.blob();
+            const uint8Array = new Uint8Array(await response.arrayBuffer());
 
-            const formData = new FormData();
+            // Replace with binary image in Base64 format
+            element.productImg = arrayBufferToBase64(uint8Array);
 
-            // Append the blob with the filename
-            formData.append('productImg', blob);
 
             delete element.id;
-            element.productImg = null;
-            // Append other fields, excluding 'productImg'
-            // for (const key in element) {
-            //     if (key !== 'productImg' /*&& key !== 'productAlbum'*/) {
-            //         formData.append(key, element[key]);
-            //     }
-            // }
-
-            // Append other fields
-            formData.append('product', JSON.stringify(element));
-            // for (const [key, value] of formData.entries()) {
-            //     console.log(key, value);
-            // }
-
-            for (const [key, value] of formData.entries()) {
-                console.log(key, value);
-            }
-            await postProductToSQL(formData);
+            await postProductToSQL(element);
         }
 
         catch (error) { console.error('Error processing product:', error); }
 
     };
 }
+
+// Helper function to convert ArrayBuffer (or Uint8Array) to Base64
+function arrayBufferToBase64(uint8Array) {
+    let binary = '';
+    const len = uint8Array.length;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(uint8Array[i]);
+    }
+    return window.btoa(binary); // Convert binary string to Base64
+  }
 
 async function postAssortmentToSQL(assortment) {
     const apiURL = 'https://localhost:7022/Assortment';
@@ -195,13 +210,9 @@ async function postPatternToSQL(pattern) {
 }
 
 
-async function postProductToSQL(formData) {
+async function postProductToSQL(element) {
     const apiURL = 'https://localhost:7022/Product';
-    await axios.post(apiURL, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
+    await axios.post(apiURL, element,)
         .catch(error => {
             console.error('Error creating product:', error);
         });
@@ -243,5 +254,3 @@ async function deleteProductFromSQL(id) {
             console.error('Error', error);
         });
 }
-
-
