@@ -50,8 +50,8 @@ async function createProduct() {
     if (useBackend) {
 
       try {
-        delete newProdpostProductToSQLuct.id;
-        await (newProduct);
+        delete newProduct.id;
+        await postProductToSQL(newProduct);
       } 
       catch (error) 
       { console.log('Error: ', error) }
