@@ -55,6 +55,12 @@
     <script src="js/commentSection/commentSectionView.js"></script>
     <script src="js/commentSection/commentSectionController.js"></script>
 
+    <script src="js/aboutMe/aboutMeView.js"></script>
+    <script src="js/aboutMe/aboutMeController.js"></script>
+
+    <script src="js/designProduct/designProductView.js"></script>
+    <script src="js/designProduct/designProductController.js"></script>
+
     <script>
       let useBackend = true;
 
@@ -78,9 +84,17 @@
         else if (page === "sortiment") updateViewAssortment();
         else if (page === "shoppingCart") updateViewShoppingCart();
         else if (page === "comments") updateViewCommentSection();
+        else if (page === "aboutMe") updateViewAboutMe();
+        else if (page === "designProduct") updateViewDesignProduct();
         
-        
+        app.innerHTML += ` <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Rebecka's Strikketøy | Designet med kjærlighet</p>
+    </footer>`;
       }
+
+
+      
     </script>
   </body>
 </html>

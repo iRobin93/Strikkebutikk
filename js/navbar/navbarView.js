@@ -36,9 +36,9 @@ function bottomNavBar() {
   <div class="bottomNavBarContainer">
   <div><p onclick="model.app.page = 'main'; updateView();" class="hover">Forsiden</p></div>
   <div><p onclick="model.app.page = 'overview'; updateView();" class="hover">Produktoversikten</p></div>
-  <div><p onclick="model.app.page = 'productSite'; updateView();" class="hover">Produkter</p></div>
-  <div><p onclick="model.app.page = 'main'; updateView();" class="hover">Design ditt produkt</p></div>
-  <div><p onclick="model.app.page = 'main'; updateView();" class="hover">Om Meg</p></div>
+  <div><p onclick="model.app.page = 'productSite'; updateView();" class="hover">Produkt</p></div>
+  <div><p onclick="model.app.page = 'designProduct'; updateView();" class="hover">Design ditt produkt</p></div>
+  <div><p onclick="model.app.page = 'aboutMe'; updateView();" class="hover">Om Meg</p></div>
   </div>
     `;
   return html;
