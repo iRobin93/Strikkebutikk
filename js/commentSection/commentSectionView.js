@@ -3,10 +3,10 @@ function updateViewCommentSection() {
     <table id="comments-table">
         <thead>
             <tr>
-                <th>Comment</th>
+                <th>Kommentar</th>
                 <th>Email</th>
-                <th>Product</th>
-                <th>Actions</th> <!-- Added actions column for buttons -->
+                <th>Produkt</th>
+                <th>Lest</th> <!-- Column for buttons -->
             </tr>
         </thead>
         <tbody>
@@ -19,9 +19,11 @@ function updateViewCommentSection() {
                 <td>${comment.email}</td>
                 <td>${model.data.products[getProductIndexById(comment.productId)].productName}</td>
                 <td>
-                    ${comment.read ? 
-                        `<button onclick="deleteComment(${index})">Delete</button>` : 
-                        `<button onclick="markAsRead(${index})">Mark as Read</button>`} <!-- Mark as Read or Delete button -->
+                    <div style="display: flex; gap: 10px;"> <!-- Flexbox to manage button layout -->
+                        ${comment.read ? 
+                            `<button onclick="deleteComment(${index})">Slett</button>` : 
+                            `<button onclick="markAsRead(${index})">Marker som lest</button>`} <!-- Mark as Read button if not read -->
+                    </div>
                 </td>
             </tr>
         `;
@@ -34,4 +36,3 @@ function updateViewCommentSection() {
 
     app.innerHTML += html;
 }
-
