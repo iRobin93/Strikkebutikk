@@ -1,4 +1,5 @@
 function showNavBar() {
+  
   let html = "";
   html += /*HTML*/ ` 
  ${topNavBar()}
@@ -20,7 +21,7 @@ function topNavBar() {
   <div class="button-container">
         <button onclick="model.app.page = 'shoppingCart'; updateView();" id="myButton" class="button">
     Handlevogn
-    <span id="myAlertNumber" ${displayNone} class="alert-number">${model.input.shoppingCart.shoppingCartLines.length}</span>
+    <span id="myAlertNumber" ${displayNone} class="alert-number1">${model.input.shoppingCart.shoppingCartLines.length}</span>
   </button>
     </div>
   <div><p onclick="model.app.page = 'logIn'; if(model.app.isAdmin) {model.app.isAdmin = false; model.app.page = 'main'} updateView();" class="hover">${model.app.isAdmin ? "Logg Ut" : "Logg Inn"}</p></div>
@@ -44,13 +45,21 @@ function bottomNavBar() {
 }
 
 function showAdminNavBar() {
+  // Count unread comments (where read = false)
+  let unreadCommentsCount = model.data.comments.filter(comment => !comment.read).length;
+
+  // Hide the alert if there are no unread comments
+  let displayNone = unreadCommentsCount > 0 ? "" : "style='Display: none;'";
+
   let html = /*HTML*/ `
   <div class="bottomNavBarContainer">
-  <div><p onclick="model.app.page = 'sortiment'; updateView();" class="hover">Sortiment</p></div>
-  <div><p onclick="model.app.page = 'comments'; updateView();" class="hover">Kommentarer</p></div>
-  <div><p onclick="model.app.page = 'addProducts'; updateView();" class="hover">Legg til Produkt</p></div>
+    <div><p onclick="model.app.page = 'sortiment'; updateView();" class="hover">Sortiment</p></div>
+    <div><p onclick="model.app.page = 'comments'; updateView();" class="hover">Kommentarer
+      <span id="commentsAlertNumber" ${displayNone} class="alert-number2">${unreadCommentsCount}</span>
+    </p></div>
+    <div><p onclick="model.app.page = 'addProducts'; updateView();" class="hover">Legg til Produkt</p></div>
   </div>
-    `;
+  `;
 
   app.innerHTML += html;
   return html;

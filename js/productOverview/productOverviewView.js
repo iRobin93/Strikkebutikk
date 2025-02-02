@@ -25,9 +25,7 @@ function updateViewOverview()
     app.innerHTML += html;
 }
 
-function createHtmlRowOverview(i)
-{
-
+function createHtmlRowOverview(i) {
     let product = model.data.products[i];
     return /*HTML*/ `
                         <tr style="cursor: pointer;" onclick="model.input.productSite.id = ${product.id}; model.input.productSite.colorId=''; model.app.page = 'productSite'; updateView(); ">
@@ -38,12 +36,11 @@ function createHtmlRowOverview(i)
                             <td>${getYarnType(product.assortmentId)}</td>
                             <td>${product.quantity}</td>
                             ${model.app.isAdmin ? 
-                                `<td onclick="event.stopPropagation();" style ="cursor: default;"><button style="cursor: pointer;" onclick="deleteProduct(${product.id}); event.stopPropagation();">Slett</button></td>` 
+                                `<td style="cursor: url('source/img/delete2.png') 16 16, auto; text-align: center; width: 20px;" onclick="deleteProduct(${product.id}); event.stopPropagation();">
+                                    <img src="./source/img/delete.png" alt="Delete" style="width: 60%; height: 60%;" />
+                                </td>` 
                                 : 
                                 ''}
                         </tr>
-    
-    
-    
     `;
 }

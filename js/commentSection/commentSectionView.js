@@ -17,7 +17,7 @@ function updateViewCommentSection() {
             <tr>
                 <td>${comment.comment}</td>
                 <td>${comment.email}</td>
-                <td>${model.data.products[getProductIndexById(comment.productId)].productName}</td>
+                <td>${model.data.products[getProductIndexById(comment.productId)] ? model.data.products[getProductIndexById(comment.productId)].productName : "Slettet"}</td>
                 <td>
                     <div style="display: flex; gap: 10px;"> <!-- Flexbox to manage button layout -->
                         ${comment.read ? 
