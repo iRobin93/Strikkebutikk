@@ -16,7 +16,7 @@ function topNavBar() {
     displayNone = "";
   let html = /*HTML*/ `
   <div class="topNavBarContainer">
-  <img style="width: 100px; height: 100px;" src="source/img/alpakka.jpg">
+  <img onclick="model.app.page = 'main'; updateView();" style="width: 100px; height: 100px; cursor: pointer;" src="source/img/alpakka.jpg">
   <input id="searchNavBar" class="searchNavBar" type="text">
   <div class="button-container">
         <button onclick="model.app.page = 'shoppingCart'; updateView();" id="myButton" class="button">
