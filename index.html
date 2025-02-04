@@ -63,7 +63,8 @@
 
     <script>
       let useBackend = true;
-
+      if(window.location.href.includes('localhost'))
+        model.app.ApiURL = "https://localhost:7022";
       if(useBackend)
         readFromSqlAndUpdateView(true);
       else
