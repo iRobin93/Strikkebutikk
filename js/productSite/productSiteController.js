@@ -33,6 +33,8 @@ function addToCart() {
 
 
 function getNewCommentId() {
+  
+
     let newId
     if (model.data.comments.length == 0)
       newId = 0;
@@ -41,7 +43,8 @@ function getNewCommentId() {
     return newId;
   }
 
-  async function submitComment() {
+  async function submitComment(event) {
+    event.preventDefault(); // Prevent the form from refreshing the page
     const userText = model.input.productSite.comment;
     const userEmail = model.input.productSite.email;
     let commentObject = { comment: model.input.productSite.comment, email: model.input.productSite.email, productId: model.input.productSite.id };
@@ -58,12 +61,12 @@ function getNewCommentId() {
         }
         
 
-        alert("Kommentar: " + userText + "\nE-post: " + userEmail); // Here, you can replace this with actual form submission logic
+        //alert("Kommentar: " + userText + "\nE-post: " + userEmail); // Here, you can replace this with actual form submission logic
         model.input.productSite.comment = "";
         model.input.productSite.email = "";
 
     } else {
-        alert("Vennligst skriv både kommentar og e-post før du sender.");
+        //alert("Vennligst skriv både kommentar og e-post før du sender.");
     }
 
     

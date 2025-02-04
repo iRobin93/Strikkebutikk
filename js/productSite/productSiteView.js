@@ -91,7 +91,7 @@ function drawProductSiteContainer2(productObject) {
 
         <div class="product-attribute">
             <div class="label">Pris:</div>
-            <div>${productObject.price}</div>
+            <div>${model.input.productSite.chosenCount ? productObject.price * model.input.productSite.chosenCount : productObject.price}</div>
             <button class="button" onclick="addToCart()">Legg til i handlevogn </button>
         </div>
 
@@ -132,23 +132,29 @@ function drawProductSiteContainer2(productObject) {
 
                     <!-- Hidden text box that will appear when the button is clicked -->
                     <div id="textBox" style="display: none; margin-top: 10px;">
-                       <!-- Comment Textarea -->
-                            <textarea oninput="model.input.productSite.comment = this.value" 
-                            style="position: relative; z-index: 999;" 
-                            onclick="focusTextField()" 
-                            id="userText" 
-                            placeholder="Skriv en kommentar..." 
-                            rows="4" 
-                            cols="50">${model.input.productSite.comment}</textarea>
-
-                            <!-- Email Input Field -->
-                            <input oninput="model.input.productSite.email = this.value" 
-                            type="email" 
-                            id="userEmail" 
-                            value="${model.input.productSite.email}" 
-                            placeholder="Skriv din e-post..." 
-                            style="position: relative; z-index: 999; margin-top: 10px; width: 100%;" />
-                        <button style="margin-top: 10px;"class="button" onclick="submitComment()">Send kommentar</button>
+                    <form id="commentForm" onsubmit="submitComment(event)" style="margin-top: 10px;">
+                    <!-- Comment Textarea -->
+                    <textarea oninput="model.input.productSite.comment = this.value" 
+                              style="position: relative; z-index: 999;" 
+                              onclick="focusTextField()" 
+                              id="userText" 
+                              placeholder="Skriv en kommentar..." 
+                              rows="4" 
+                              cols="50" 
+                              required>${model.input.productSite.comment}</textarea>
+                
+                    <!-- Email Input Field -->
+                    <input oninput="model.input.productSite.email = this.value" 
+                           type="email" 
+                           id="userEmail" 
+                           value="${model.input.productSite.email}" 
+                           placeholder="Skriv din e-post..." 
+                           style="position: relative; z-index: 999; margin-top: 10px; width: 100%;" 
+                           required />
+                
+                    <button style="margin-top: 10px;" class="button" type="submit">Send kommentar</button>
+                </form>
+                
                     </div>
                 </div>
             </div>
