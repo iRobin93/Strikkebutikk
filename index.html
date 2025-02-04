@@ -1,103 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rebeckas Nettbutikk</title>
-    <link rel="stylesheet" href="styles/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  </head>
-  <style>
-    .create-container {
-      display: flex;
-      flex-direction: row;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rebeckas Nettbutikk</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<style>
+  .create-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+</style>
+
+<body>
+
+  <div id="app"></div>
+
+  <script src="js/model.js"></script>
+  <script src="js/common.js"></script>
+
+  <script src="js/main/mainView.js"></script>
+  <script src="js/main/mainController.js"></script>
+
+  <script src="js/navbar/navbarView.js"></script>
+  <script src="js/navbar/navbarController.js"></script>
+
+  <script src="js/logIn/logInView.js"></script>
+  <script src="js/logIn/logInController.js"></script>
+
+  <script src="js/productOverview/productOverviewView.js"></script>
+  <script src="js/productOverview/productOverviewController.js"></script>
+
+  <script src="js/productSite/productSiteView.js"></script>
+  <script src="js/productSite/productSiteController.js"></script>
+
+  <script src="js/addProducts/addProductsView.js"></script>
+  <script src="js/addProducts/addProductsController.js"></script>
+
+  <script src="js/assortmentSite/assortmentView.js"></script>
+  <script src="js/assortmentSite/assortmentController.js"></script>
+
+  <script src="js/shoppingCartSite/shoppincCartSiteView.js"></script>
+  <script src="js/shoppingCartSite/shoppingCartSiteController.js"></script>
+
+  <script src="js/commentSection/commentSectionView.js"></script>
+  <script src="js/commentSection/commentSectionController.js"></script>
+
+  <script src="js/aboutMe/aboutMeView.js"></script>
+  <script src="js/aboutMe/aboutMeController.js"></script>
+
+  <script src="js/designProduct/designProductView.js"></script>
+  <script src="js/designProduct/designProductController.js"></script>
+
+  <script>
+    let useBackend = true;
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "") {
+      model.app.ApiURL = "https://localhost:7022";
     }
-    .input-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      align-content: center;
-    }
-  </style>
-  <body>
 
-    <div id="app"></div>
+    if (useBackend)
+      readFromSqlAndUpdateView(true);
+    else
+      updateView();
 
-    <script src="js/model.js"></script>
-    <script src="js/common.js"></script>
 
-    <script src="js/main/mainView.js"></script>
-    <script src="js/main/mainController.js"></script>
 
-    <script src="js/navbar/navbarView.js"></script>
-    <script src="js/navbar/navbarController.js"></script>
+    function updateView() {
+      const page = model.app.page;
 
-    <script src="js/logIn/logInView.js"></script>
-    <script src="js/logIn/logInController.js"></script>
+      app.innerHTML = showNavBar();
+      if (model.app.isAdmin) {
+        app.innerHTML += showAdminNavBar();
+      }
+      if (page === "main") updateViewMain();
+      else if (page === "logIn") updateViewLogIn();
+      else if (page === "overview") updateViewOverview();
+      else if (page === "productSite") updateViewProduct();
+      else if (page === "addProducts") updateViewAdd();
+      else if (page === "sortiment") updateViewAssortment();
+      else if (page === "shoppingCart") updateViewShoppingCart();
+      else if (page === "comments") updateViewCommentSection();
+      else if (page === "aboutMe") updateViewAboutMe();
+      else if (page === "designProduct") updateViewDesignProduct();
 
-    <script src="js/productOverview/productOverviewView.js"></script>
-    <script src="js/productOverview/productOverviewController.js"></script>
-
-    <script src="js/productSite/productSiteView.js"></script>
-    <script src="js/productSite/productSiteController.js"></script>
-
-    <script src="js/addProducts/addProductsView.js"></script>
-    <script src="js/addProducts/addProductsController.js"></script>
-    
-    <script src="js/assortmentSite/assortmentView.js"></script>
-    <script src="js/assortmentSite/assortmentController.js"></script>
-
-    <script src="js/shoppingCartSite/shoppincCartSiteView.js"></script>
-    <script src="js/shoppingCartSite/shoppingCartSiteController.js"></script>
-
-    <script src="js/commentSection/commentSectionView.js"></script>
-    <script src="js/commentSection/commentSectionController.js"></script>
-
-    <script src="js/aboutMe/aboutMeView.js"></script>
-    <script src="js/aboutMe/aboutMeController.js"></script>
-
-    <script src="js/designProduct/designProductView.js"></script>
-    <script src="js/designProduct/designProductController.js"></script>
-
-    <script>
-      let useBackend = true;
-      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "") {
-        model.app.ApiURL = "https://localhost:7022";
-        }
-        
-      if(useBackend)
-        readFromSqlAndUpdateView(true);
-      else
-        updateView();
-
-      function updateView() {
-        const page = model.app.page;
-
-        app.innerHTML = showNavBar();
-        if (model.app.isAdmin) {
-          app.innerHTML += showAdminNavBar();
-        }
-        if (page === "main") updateViewMain();
-        else if (page === "logIn") updateViewLogIn();
-        else if (page === "overview") updateViewOverview();
-        else if (page === "productSite") updateViewProduct();
-        else if (page === "addProducts") updateViewAdd();
-        else if (page === "sortiment") updateViewAssortment();
-        else if (page === "shoppingCart") updateViewShoppingCart();
-        else if (page === "comments") updateViewCommentSection();
-        else if (page === "aboutMe") updateViewAboutMe();
-        else if (page === "designProduct") updateViewDesignProduct();
-        
-        app.innerHTML += ` <!-- Footer -->
+      app.innerHTML += ` <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 Rebecka's Strikketøy | Designet med kjærlighet</p>
     </footer>`;
-      }
+    }
 
 
-      
-    </script>
-  </body>
+
+  </script>
+</body>
+
 </html>

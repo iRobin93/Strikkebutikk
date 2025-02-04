@@ -5,6 +5,7 @@ const model = {
     page: "main", //"logIn", "overview", "productSite", "addProducts"
     isAdmin: false,
     ApiURL: "https://strikkebutikk-b7czdrcve4cpetgw.uksouth-01.azurewebsites.net",
+    CloudinaryUrl: "https://res.cloudinary.com/daiawei7x/image/upload/v1738696653/",
   },
   input: {
     searchField: {
@@ -26,6 +27,7 @@ const model = {
       size: "",
       imgName: "",
       imgByteStream: "",
+      file: "",
     },
     productSite: {
       id: "",
@@ -191,7 +193,7 @@ const model = {
     products: [
       {
         id: 0,
-        productImg: "source/img/seven-sister-genser.png",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738702484/seven-sister-genser.png",
         productAlbum: [
           "source/img/seven-sisters1.png",
           "source/img/seven-sisters2.png",
@@ -210,7 +212,7 @@ const model = {
       },
       {
         id: 1,
-        productImg: "source/img/bobbie-genser.jpg",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703253/bobbie-genser.jpg",
         productAlbum: [
           "source/img/bobbie-genser1.jpg",
           "source/img/bobbie-genser2.jpg",
@@ -229,7 +231,7 @@ const model = {
       },
       {
         id: 2,
-        productImg: "source/img/floreale-top.png",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703333/floreale-top.png",
         productAlbum: [
           "source/img/floreal-top1.png",
           "source/img/floreal-top2.png",
@@ -248,7 +250,7 @@ const model = {
       },
       {
         id: 3,
-        productImg: "source/img/meadow-sunset.jpg",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703374/meadow-sunset.jpg",
         productAlbum: [
           "source/img/meadow-sunset1.jpg",
           "source/img/meadow-sunset2.jpg",
@@ -267,7 +269,7 @@ const model = {
       },
       {
         id: 4,
-        productImg: "source/img/winter-sjal.jpg",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703515/winter-sjal.jpg",
         productAlbum: [
           "source/img/winter-sjal1.jpeg",
           "source/img/winter-sjal2.jpeg",
@@ -286,7 +288,7 @@ const model = {
       },
       {
         id: 5,
-        productImg: "source/img/muse-shawel.png",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703552/muse-shawel.png",
         productAlbum: [
           "source/img/muse-shawl1.png",
           "source/img/muse-shawl2.png",
@@ -305,7 +307,7 @@ const model = {
       },
       {
         id: 6,
-        productImg: "source/img/rosmarino-sokker.png",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703589/rosmarino-sokker.png",
         productAlbum: [
           "source/img/rosmarino1.png",
           "source/img/rosmarino2.png",
@@ -324,7 +326,7 @@ const model = {
       },
       {
         id: 7,
-        productImg: "source/img/bell-julestrømpe.jpg",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703647/bell-julestr%C3%B8mpe.jpg",
         productAlbum: [
           "source/img/bell-julestrømpe1.jpg",
           "source/img/bell-julestrømpe2.jpg",
@@ -342,7 +344,7 @@ const model = {
       },
       {
         id: 8,
-        productImg: "source/img/harper-votter.png",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703694/harper-votter.png",
         productAlbum: [
           "source/img/harper-votter1.png",
           "source/img/harper-votter2.png",
@@ -361,7 +363,7 @@ const model = {
       },
       {
         id: 9,
-        productImg: "source/img/kogle-votter.jpeg",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703723/kogle-votter.jpg",
         productAlbum: [
           "source/img/kogle-votter1.jpeg",
           "source/img/kogle-votter2.jpeg",
@@ -380,7 +382,7 @@ const model = {
       },
       {
         id: 10,
-        productImg: "source/img/rubin-vott.jpg",
+        productImg: "https://res.cloudinary.com/daiawei7x/image/upload/v1738703750/rubin-vott.jpg",
         productAlbum: [
           "source/img/rubin-vott1.jpg",
           "source/img/rubin-vott2.jpg",

@@ -95,6 +95,7 @@ function drawInput() {
 async function readFile(fileInput) {
 
   const byteArray = await fileInput.files[0].arrayBuffer();
+  model.input.createProduct.file = fileInput.files[0];
   const uint8Array = new Uint8Array(byteArray);
 
   model.input.createProduct.imgName = fileInput.files[0].name;

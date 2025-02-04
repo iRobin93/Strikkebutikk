@@ -52,7 +52,6 @@ async function readFromSqlAndUpdateView(firstTime) {
     catch (error) {
         if (firstTime) {
             useBackend = false;
-            moveImgFilesToProperties();
             updateView();
             return;
         }
@@ -81,28 +80,11 @@ async function readFromSqlAndUpdateView(firstTime) {
   }
 
 
-  async function moveImgFilesToProperties() {
-    for (const element of model.data.products) {
-        try {
-            const response = await fetch(element.productImg); // Assuming `imagePath` is part of the `element`
-            const uint8Array = new Uint8Array(await response.arrayBuffer());
-
-            // Convert arrayBuffer to Base64
-            element.productImg = arrayBufferToBase64(uint8Array);
-        } catch (error) {
-            console.error('Error fetching or converting image:', error);
-        }
-    }
-}
-
 async function getProductsFromSQL() {
     const apiURL = model.app.ApiURL + '/Product';
     await axios.get(apiURL)
         .then(response => {
             model.data.products = response.data;
-            // model.data.products.forEach(element => {
-            //     element.productImg = new Blob([element.productImg], {type: 'text/plain'});
-            // });
             console.log(model.data.products);
         })
         .catch(error => {
@@ -162,16 +144,6 @@ async function initializeAssortment() {
 async function initializeProducts() {
     for (const element of model.data.products) {
         try {
-            const imagePath = element.productImg;
-
-            // Wait for the image to be fetched and converted to a blob
-            const response = await fetch(imagePath);
-            const uint8Array = new Uint8Array(await response.arrayBuffer());
-
-            // Replace with binary image in Base64 format
-            element.productImg = arrayBufferToBase64(uint8Array);
-
-
             delete element.id;
             await postProductToSQL(element);
         }

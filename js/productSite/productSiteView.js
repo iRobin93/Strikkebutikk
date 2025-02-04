@@ -20,10 +20,7 @@ function updateViewProduct() {
 `;
 }
 
-function showProductImage(index) {
-    let productObject = model.data.products[index];
-    return showImage(productObject.productImg);
-}
+
 
 
 function drawProductSiteContainer1(productObject, index) {

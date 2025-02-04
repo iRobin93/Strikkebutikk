@@ -31,6 +31,10 @@ function addToCart() {
     
 }
 
+function showProductImage(index) {
+    let productObject = model.data.products[index];
+    return productObject.productImg;
+}
 
 function getNewCommentId() {
   

@@ -38,10 +38,11 @@ async function createProduct() {
       quantity: createProduct.quantity,
       productInfo: createProduct.productInfo,
       patternId: createProduct.patternId,
-      productImg: createProduct.imgByteStream,
+      productImg: createProduct.file.name,
     };
 
-
+    newProduct.productImg = await uploadImageToCDN(model.input.createProduct.file);
+    
     for (let i = 0; i < model.input.createProduct.colorAltIds.length; i++)
       newProduct.colorAltIds.push(Number(model.input.createProduct.colorAltIds[i]))
 
@@ -61,6 +62,35 @@ async function createProduct() {
     else
       updateView();
   }
+}
+
+async function uploadImageToCDN(file){
+          // Create a FormData object to send the file
+          let responsedata;
+          let data;
+          const formData = new FormData();
+          formData.append("file", file); // 'file' is the key that Cloudinary expects
+          formData.append("upload_preset", "strikkebutikk"); // Replace with your Cloudinary upload preset
+          formData.append("public_id", file.name); // Set your custom image name here
+      
+          // Send the request to Cloudinary
+          try{
+            response = await fetch("https://api.cloudinary.com/v1_1/daiawei7x/image/upload", {
+            method: "POST",
+            body: formData,
+          });
+            data = await response.json();
+              console.log("Upload successful:", data);
+              // You can access the image URL here
+              responsedata = data.secure_url;
+              
+              console.log(responsedata);
+          }
+          
+            catch(error) {
+              console.error("Error uploading the image:", error);
+            };
+            return responsedata;
 }
 
 function resetInputProductFields() {
