@@ -4,6 +4,7 @@ const model = {
   app: {
     page: "main", //"logIn", "overview", "productSite", "addProducts"
     isAdmin: false,
+    ApiURL: "https://strikkebutikk-b7czdrcve4cpetgw.uksouth-01.azurewebsites.net",
   },
   input: {
     searchField: {

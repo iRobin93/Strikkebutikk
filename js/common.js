@@ -36,7 +36,7 @@ function findColorObjectById(colorId) {
 
 async function readFromSqlAndUpdateView(firstTime) {
     console.log(model.data.products);
-    const apiURL = 'https://localhost:7022/Product';
+    const apiURL = model.app.ApiURL + '/Product';
 
 
     try {
@@ -96,7 +96,7 @@ async function readFromSqlAndUpdateView(firstTime) {
 }
 
 async function getProductsFromSQL() {
-    const apiURL = 'https://localhost:7022/Product';
+    const apiURL = model.app.ApiURL + '/Product';
     await axios.get(apiURL)
         .then(response => {
             model.data.products = response.data;
@@ -111,7 +111,7 @@ async function getProductsFromSQL() {
 }
 
 async function getPatternsFromSQL() {
-    const apiURL = 'https://localhost:7022/Pattern';
+    const apiURL = model.app.ApiURL + '/Pattern';
     await axios.get(apiURL)
         .then(response => {
             model.data.pattern = response.data;
@@ -123,7 +123,7 @@ async function getPatternsFromSQL() {
 }
 
 async function getAssortmentsFromSQL() {
-    const apiURL = 'https://localhost:7022/Assortment';
+    const apiURL = model.app.ApiURL + '/Assortment';
     await axios.get(apiURL)
         .then(response => {
             model.data.assortment = response.data;
@@ -135,7 +135,7 @@ async function getAssortmentsFromSQL() {
 }
 
 async function getCommentsFromSQL() {
-    const apiURL = 'https://localhost:7022/Comment';
+    const apiURL = model.app.ApiURL + '/Comment';
     await axios.get(apiURL)
         .then(response => {
             model.data.comments = response.data;
@@ -192,7 +192,8 @@ function arrayBufferToBase64(uint8Array) {
   }
 
 async function postAssortmentToSQL(assortment) {
-    const apiURL = 'https://localhost:7022/Assortment';
+    const apiURL = model.app.ApiURL + '/Assortment';
+    
     await axios.post(apiURL, assortment)
 
         .catch(error => {
@@ -201,7 +202,7 @@ async function postAssortmentToSQL(assortment) {
 }
 
 async function postPatternToSQL(pattern) {
-    const apiURL = 'https://localhost:7022/Pattern';
+    const apiURL = model.app.ApiURL + '/Pattern';
     await axios.post(apiURL, pattern)
 
         .catch(error => {
@@ -211,7 +212,7 @@ async function postPatternToSQL(pattern) {
 
 
 async function postProductToSQL(element) {
-    const apiURL = 'https://localhost:7022/Product';
+    const apiURL = model.app.ApiURL + '/Product';
     await axios.post(apiURL, element,)
         .catch(error => {
             console.error('Error creating product:', error);
@@ -220,7 +221,7 @@ async function postProductToSQL(element) {
 
 async function postCommentToSQL(commentObject){
     
-    const apiURL = 'https://localhost:7022/Comment';
+    const apiURL = model.app.ApiURL + '/Comment';
     await axios.post(apiURL, commentObject)
 
         .catch(error => {
@@ -230,7 +231,7 @@ async function postCommentToSQL(commentObject){
 
 
 async function deleteAssortmentFromSQL(id) {
-    const apiURL = `https://localhost:7022/Assortment?id=${id}`;
+    const apiURL = model.app.ApiURL + '/Assortment' + `?id=${id}`;
     await axios.delete(apiURL)
         .catch(error => {
             console.error('Error', error);
@@ -239,7 +240,7 @@ async function deleteAssortmentFromSQL(id) {
 }
 
 async function deletePatternFromSQL(id) {
-    const apiURL = `https://localhost:7022/Pattern?id=${id}`;
+    const apiURL = model.app.ApiURL + '/Pattern' + `?id=${id}`;
     await axios.delete(apiURL)
         .catch(error => {
             console.error('Error', error);
@@ -248,7 +249,7 @@ async function deletePatternFromSQL(id) {
 }
 
 async function deleteProductFromSQL(id) {
-    const apiURL = `https://localhost:7022/Product?id=${id}`;
+    const apiURL = model.app.ApiURL + '/Product' + `?id=${id}`;
     await axios.delete(apiURL)
         .catch(error => {
             console.error('Error', error);
@@ -256,7 +257,7 @@ async function deleteProductFromSQL(id) {
 }
 
 async function deleteCommentFromSQL(id) {
-    const apiURL = `https://localhost:7022/Comment?id=${id}`;
+    const apiURL = model.app.ApiURL + '/Comment' + `?id=${id}`;
     await axios.delete(apiURL)
         .catch(error => {
             console.error('Error', error);
@@ -264,7 +265,7 @@ async function deleteCommentFromSQL(id) {
 }
 
 async function putCommentInSQL(id){
-    const apiURL = `https://localhost:7022/Comment?id=${id}`;
+    const apiURL = model.app.ApiURL + '/Comment' + `?id=${id}`;
     await axios.put(apiURL)
         .catch(error => {
             console.error('Error', error);
