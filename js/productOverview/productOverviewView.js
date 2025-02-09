@@ -37,7 +37,7 @@ function createHtmlRowOverview(i) {
                             <td>${product.quantity}</td>
                             ${model.app.isAdmin ? 
                                 `<td style="cursor: url('source/img/delete2.png') 16 16, auto; text-align: center; width: 20px;" onclick="deleteProduct(${product.id}); event.stopPropagation();">
-                                    <img src="./source/img/delete.png" alt="Delete" style="width: 60%; height: 60%;" />
+                                    <img src="./source/img/delete.png" alt="Delete" style="width: 20px; height: 20px;" />
                                 </td>` 
                                 : 
                                 ''}

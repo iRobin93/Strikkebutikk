@@ -13,23 +13,24 @@
   cursor: pointer;
 }
 
-.sortimentText{
+.sortimentText {
   display: flex;
   justify-content: center;
 }
 
-.assortmentYarn{
+.assortmentYarn {
   width: 90%;
   height: 100%;
   border: solid 2px green;
 }
 
-.assortmentContainer{
+.assortmentContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin-top: 5%;
 }
-.assortmentContainer2{
+
+.assortmentContainer2 {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   margin-top: 5%;
@@ -37,30 +38,30 @@
 
 
 
-.productAlbumImg{
+.productAlbumImg {
   height: 65px;
   width: 65px;
 }
 
-.productSiteContainer0{
+.productSiteContainer0 {
   display: grid;
   grid-template-columns: 210px 10px auto;
   margin-top: 5%;
 }
 
 
-.productSiteContainer2{
+.productSiteContainer2 {
   display: grid;
   grid-template-columns: 210px auto auto;
   margin-top: 5%;
 }
 
-.productSiteContainer3{
+.productSiteContainer3 {
   margin-top: 400px;
 }
 
 
-.bordered{
+.bordered {
   border: dashed 2px orange;
 }
 
@@ -77,12 +78,12 @@
   cursor: pointer;
 }
 
-img{
+img {
   width: 200px;
   height: 200px;
 }
 
-.ProductPicture{
+.ProductPicture {
   width: 50px;
   height: 50px;
 }
@@ -91,23 +92,23 @@ table,
 tr,
 td,
 th {
-    border: 1px solid lightgray;
-    border-collapse: collapse;
+  border: 1px solid lightgray;
+  border-collapse: collapse;
 }
 
 td,
 th {
-    padding: 4px;
+  padding: 4px;
 }
 
 th {
-    background-color: #2d3b3d;
-    border: 1px solid #2d3b3d;
-    color: white;
+  background-color: #2d3b3d;
+  border: 1px solid #2d3b3d;
+  color: white;
 }
 
 tr:nth-child(even) {
-    background: antiquewhite;
+  background: antiquewhite;
 }
 
 
@@ -126,7 +127,7 @@ tr:nth-child(even) {
 }
 
 .button:hover {
-  background-color:rgb(178, 187, 196);
+  background-color: rgb(178, 187, 196);
 }
 
 /* Style for the alert number (comment count) */
@@ -154,24 +155,33 @@ tr:nth-child(even) {
 /* Ensure the container around the 'Kommentarer' text is positioned relatively */
 .bottomNavBarContainer .hover {
   position: relative;
-  display: inline-block; /* Ensure the span is correctly positioned relative to the text */
+  display: inline-block;
+  /* Ensure the span is correctly positioned relative to the text */
+
 }
 
 .bottomNavBarContainer {
+  width: 100%;
+  position: relative;
   background-color: aliceblue;
-  padding: 10px 0; /* Add padding to the top and bottom */
+  padding: 10px 0;
+  /* Add padding to the top and bottom */
 }
 
 .bottomNavBarContainer ul {
-  display: flex; /* Flexbox will make the list horizontal */
-  justify-content: space-around; /* Space out the items evenly */
+  display: flex;
+  /* Flexbox will make the list horizontal */
+  justify-content: space-around;
+  /* Space out the items evenly */
   padding: 0;
   margin: 0;
-  list-style: none; /* Remove the default list styling */
+  list-style: none;
+  /* Remove the default list styling */
 }
 
 .bottomNavBarContainer li {
-  display: inline-block; /* Ensure that the list items are inline */
+  display: inline-block;
+  /* Ensure that the list items are inline */
 }
 
 .bottomNavBarContainer p {
@@ -181,25 +191,32 @@ tr:nth-child(even) {
 }
 
 .bottomNavBarContainer p:hover {
-  background-color: #ddd; /* Add a hover effect */
+  background-color: #ddd;
+  /* Add a hover effect */
 }
 
 
 .adminNavBarContainer {
-  background-color: aliceblue; /* Optional: background color for better visibility */
-  padding: 10px 0; /* Add padding to the top and bottom */
+  background-color: aliceblue;
+  /* Optional: background color for better visibility */
+  padding: 10px 0;
+  /* Add padding to the top and bottom */
 }
 
 .adminNavBarContainer ul {
-  display: flex; /* Flexbox to make the list horizontal */
-  justify-content: space-around; /* Space out the items evenly */
+  display: flex;
+  /* Flexbox to make the list horizontal */
+  justify-content: space-around;
+  /* Space out the items evenly */
   padding: 0;
   margin: 0;
-  list-style: none; /* Remove default list styles */
+  list-style: none;
+  /* Remove default list styles */
 }
 
 .adminNavBarContainer li {
-  display: inline-block; /* Ensure that list items are inline */
+  display: inline-block;
+  /* Ensure that list items are inline */
 }
 
 .adminNavBarContainer p {
@@ -209,7 +226,8 @@ tr:nth-child(even) {
 }
 
 .adminNavBarContainer p:hover {
-  background-color: #ddd; /* Add a hover effect */
+  background-color: #ddd;
+  /* Add a hover effect */
 }
 
 .product-container {
@@ -252,6 +270,7 @@ tr:nth-child(even) {
   display: flex;
   align-items: center;
 }
+
 .product-info {
   margin-top: 20px;
   font-style: italic;
@@ -278,7 +297,8 @@ tr:nth-child(even) {
   text-align: center;
 }
 
-.shipping-item .label, .shipping-action .button {
+.shipping-item .label,
+.shipping-action .button {
   font-size: 16px;
 }
 
@@ -326,7 +346,8 @@ input {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
+  -moz-appearance: textfield;
+  /* Firefox */
   appearance: textfield;
 }
 
@@ -343,16 +364,18 @@ input[type="number"] {
 }
 
 .submit-btn:hover {
-  background-color:rgb(178, 187, 196);
+  background-color: rgb(178, 187, 196);
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"] {
   height: 40px;
 }
 
 input[placeholder] {
   color: #000000;
 }
+
 textarea {
   width: 100%;
   padding: 10px;
@@ -361,8 +384,10 @@ textarea {
   border-radius: 4px;
   box-sizing: border-box;
   background-color: #f9f9f9;
-  resize: vertical; /* Allows users to resize vertically */
-  height: 100px; /* Set a reasonable initial height */
+  resize: vertical;
+  /* Allows users to resize vertically */
+  height: 100px;
+  /* Set a reasonable initial height */
 }
 
 
@@ -518,7 +543,8 @@ textarea {
   margin-bottom: 10px;
 }
 
-.contact input, .contact textarea {
+.contact input,
+.contact textarea {
   padding: 10px;
   margin-bottom: 20px;
   font-size: 1em;
