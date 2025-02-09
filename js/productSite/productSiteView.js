@@ -24,16 +24,25 @@ function updateViewProduct() {
 
 
 function drawProductSiteContainer1(productObject, index) {
-
-
+    // Generate the HTML structure
     let html = /*HTML*/`
-    
-    <img src="${showProductImage(index)}"/>
-    <img class="productAlbumImg" src="${productObject.productAlbum[0]}"/>
-    <img class="productAlbumImg" src="${productObject.productAlbum[1]}"/>
-    <img class="productAlbumImg" src="${productObject.productAlbum[2]}"/>
-    `
+    <img id="mainImg" src="${showProductImage(index)}"/>
+    <img style="cursor: pointer;" class="productAlbumImg" src="${productObject.productAlbum[0]}" onclick="swapImage(0)"/>
+    <img style="cursor: pointer;" class="productAlbumImg" src="${productObject.productAlbum[1]}" onclick="swapImage(1)"/>
+    <img style="cursor: pointer;" class="productAlbumImg" src="${productObject.productAlbum[2]}" onclick="swapImage(2)"/>
+    `;
     return html;
+}
+
+// Function to swap the clicked image with the main image
+function swapImage(index) {
+    const mainImg = document.getElementById("mainImg");
+    const albumImages = document.querySelectorAll(".productAlbumImg");
+
+    // Swap the src of the clicked image with the main image
+    const clickedImageSrc = albumImages[index].src;
+    albumImages[index].src = mainImg.src;
+    mainImg.src = clickedImageSrc;
 }
 
 function drawProductSiteContainer2(productObject) {
