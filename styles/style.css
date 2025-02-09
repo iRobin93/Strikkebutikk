@@ -2,11 +2,7 @@
   display: flex;
   justify-content: space-between;
 }
-.bottomNavBarContainer {
-  display: flex;
-  justify-content: space-between;
-  background-color: aliceblue;
-}
+
 
 .searchNavBar {
   width: 120px;
@@ -135,30 +131,23 @@ tr:nth-child(even) {
 
 /* Style for the alert number (comment count) */
 .alert-number1 {
-  position: absolute;
-  top: -5px; /* Adjust based on your layout */
-  right: -10px; /* Adjust based on your layout */
-  background-color: red; /* Change to the desired color */
+  background-color: red;
   color: white;
+  padding: 0 5px;
   border-radius: 50%;
-  padding: 3px 6px;
-  font-size: 12px; /* Adjust the font size */
-  display: inline-block;
-  text-align: center;
+  font-size: 12px;
+  vertical-align: top;
+  margin-left: 5px;
 }
 
-/* Style for the alert number (comment count) */
 .alert-number2 {
-  position: absolute;
-  top: -5px; /* Adjust vertical position if needed */
-  right: -20px; /* Increase the value to push the number further to the right */
-  background-color: red; /* Change to the desired color */
+  background-color: red;
   color: white;
+  padding: 0 5px;
   border-radius: 50%;
-  padding: 3px 6px;
-  font-size: 12px; /* Adjust the font size */
-  display: inline-block;
-  text-align: center;
+  font-size: 12px;
+  vertical-align: top;
+  margin-left: 5px;
 }
 
 
@@ -168,6 +157,60 @@ tr:nth-child(even) {
   display: inline-block; /* Ensure the span is correctly positioned relative to the text */
 }
 
+.bottomNavBarContainer {
+  background-color: aliceblue;
+  padding: 10px 0; /* Add padding to the top and bottom */
+}
+
+.bottomNavBarContainer ul {
+  display: flex; /* Flexbox will make the list horizontal */
+  justify-content: space-around; /* Space out the items evenly */
+  padding: 0;
+  margin: 0;
+  list-style: none; /* Remove the default list styling */
+}
+
+.bottomNavBarContainer li {
+  display: inline-block; /* Ensure that the list items are inline */
+}
+
+.bottomNavBarContainer p {
+  margin: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.bottomNavBarContainer p:hover {
+  background-color: #ddd; /* Add a hover effect */
+}
+
+
+.adminNavBarContainer {
+  background-color: aliceblue; /* Optional: background color for better visibility */
+  padding: 10px 0; /* Add padding to the top and bottom */
+}
+
+.adminNavBarContainer ul {
+  display: flex; /* Flexbox to make the list horizontal */
+  justify-content: space-around; /* Space out the items evenly */
+  padding: 0;
+  margin: 0;
+  list-style: none; /* Remove default list styles */
+}
+
+.adminNavBarContainer li {
+  display: inline-block; /* Ensure that list items are inline */
+}
+
+.adminNavBarContainer p {
+  margin: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.adminNavBarContainer p:hover {
+  background-color: #ddd; /* Add a hover effect */
+}
 
 .product-container {
   font-family: Arial, sans-serif;
@@ -273,7 +316,7 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;

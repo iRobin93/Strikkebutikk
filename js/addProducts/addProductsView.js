@@ -7,11 +7,11 @@ function updateViewAdd() {
             <label class="button" for="fileField">Velg fil for bilde!</label>
             <div>&nbsp;</div>
             <img ${imgText} src="${showImage(model.input.createProduct.imgByteStream)}" alt="" id="productImage" />
+            <div class="input-container">
+              ${drawInput()}
+              
           </div>
-          <div class="input-container">
-            ${drawInput()}
-            
-        </div>
+          </div>
 
 `;
 }

@@ -31,16 +31,19 @@ function topNavBar() {
   return html;
 }
 
+
 function bottomNavBar() {
   let html = /*HTML*/ `
-  <div class="bottomNavBarContainer">
-  <div><p onclick="model.app.page = 'main'; updateView();" class="hover">Forsiden</p></div>
-  <div><p onclick="model.app.page = 'overview'; updateView();" class="hover">Produktoversikten</p></div>
-  <div><p onclick="model.app.page = 'productSite'; updateView();" class="hover">Produkt</p></div>
-  <div><p onclick="model.app.page = 'designProduct'; updateView();" class="hover">Design ditt produkt</p></div>
-  <div><p onclick="model.app.page = 'aboutMe'; updateView();" class="hover">Om Meg</p></div>
-  </div>
-    `;
+  <nav class="bottomNavBarContainer">
+    <ul>
+      <li><p onclick="model.app.page = 'main'; updateView();" class="hover">Forsiden</p></li>
+      <li><p onclick="model.app.page = 'overview'; updateView();" class="hover">Produktoversikten</p></li>
+      <li><p onclick="model.app.page = 'productSite'; updateView();" class="hover">Produkt</p></li>
+      <li><p onclick="model.app.page = 'designProduct'; updateView();" class="hover">Design ditt produkt</p></li>
+      <li><p onclick="model.app.page = 'aboutMe'; updateView();" class="hover">Om Meg</p></li>
+    </ul>
+  </nav>
+  `;
   return html;
 }
 
@@ -49,16 +52,18 @@ function showAdminNavBar() {
   let unreadCommentsCount = model.data.comments.filter(comment => !comment.read).length;
 
   // Hide the alert if there are no unread comments
-  let displayNone = unreadCommentsCount > 0 ? "" : "style='Display: none;'";
+  let displayNone = unreadCommentsCount > 0 ? "" : "style='display: none;'";
 
   let html = /*HTML*/ `
-  <div class="bottomNavBarContainer">
-    <div><p onclick="model.app.page = 'sortiment'; updateView();" class="hover">Sortiment</p></div>
-    <div><p onclick="getCommentsFromSQL(); model.app.page = 'comments'; updateView();" class="hover">Kommentarer
-      <span id="commentsAlertNumber" ${displayNone} class="alert-number2">${unreadCommentsCount}</span>
-    </p></div>
-    <div><p onclick="model.app.page = 'addProducts'; updateView();" class="hover">Legg til Produkt</p></div>
-  </div>
+  <nav class="adminNavBarContainer">
+    <ul>
+      <li><p onclick="model.app.page = 'sortiment'; updateView();" class="hover">Sortiment</p></li>
+      <li><p onclick="getCommentsFromSQL(); model.app.page = 'comments'; updateView();" class="hover">Kommentarer
+        <span id="commentsAlertNumber" ${displayNone} class="alert-number2">${unreadCommentsCount}</span>
+      </p></li>
+      <li><p onclick="model.app.page = 'addProducts'; updateView();" class="hover">Legg til Produkt</p></li>
+    </ul>
+  </nav>
   `;
 
   app.innerHTML += html;
